@@ -3,7 +3,11 @@
 {
   imports = [
     ./hardware-configuration.nix
+
     ./bspwm.nix
+    ./sound.nix
+    ./home.nix
+    ./env.nix
   ];
 
   options.vellu.userData = lib.mkOption {
@@ -15,11 +19,17 @@
   };
 
   config = {
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    system.stateVersion = config.vellu.userData.nixosVersion;
 
-    networking.hostName = "nixos";
-    networking.networkmanager.enable = true;
+    boot = {
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+    };
+
+    networking = {
+      hostName = "nixos";
+      networkmanager.enable = true;
+    };
 
     time.timeZone = "Europe/Rome";
     i18n.defaultLocale = "en_US.UTF-8";
@@ -35,43 +45,8 @@
       LC_TIME = "en_US.UTF-8";
     };
 
-    services.xserver.displayManager.sddm.enable = true;
-    services.xserver = {
-      layout = "us";
-      xkbVariant = "";
-    };
-
-    sound.enable = true;
-    security.rtkit.enable = true;
-    services.pipewire = {
-      # enable = false;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    hardware.pulseaudio = {
-      enable = false;
-    };
-
-    users.users."${config.vellu.userData.username}" = {
-      isNormalUser = true;
-      description = config.vellu.userData.fullname;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" ];
-    };
-
-    home-manager.users."${config.vellu.userData.username}" = {
-      home.stateVersion = config.vellu.userData.nixosVersion;
-    };
-
     nixpkgs.config.allowUnfree = true;
-
-    system.stateVersion = config.vellu.userData.nixosVersion;
-
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    virtualisation.libvirtd.enable = true;
-    programs.dconf.enable = true;
-    virtualisation.spiceUSBRedirection.enable = true;
 
     virtualisation = {
       podman = {
@@ -80,25 +55,32 @@
       };
 
       docker.enable = true;
+      libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
     };
 
-    hardware.keyboard.qmk.enable = true;
+    hardware = {
+      keyboard.qmk.enable = true;
+      opengl.driSupport32Bit = true; # for 32 bit wine apps
+    };
 
-    programs.steam.enable = true;
+    programs = {
+      steam.enable = true;
+      corectrl.enable = true;
+      dconf.enable = true;
 
-    programs.corectrl.enable = true;
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+    };
+
+    xdg = {
+      portal.enable = true;
+      portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+
     services.flatpak.enable = true;
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-
     services.xserver.videoDrivers = [ "modesetting" ];
-
-    # For wine32 bit
-    hardware.opengl.driSupport32Bit = true;
   };
 }
