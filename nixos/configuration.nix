@@ -8,6 +8,7 @@
     ./sound.nix
     ./home.nix
     ./env.nix
+    ./packages.nix
   ];
 
   options.vellu.userData = lib.mkOption {
