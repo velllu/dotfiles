@@ -1,0 +1,58 @@
+#+Title: Bspwm Config
+#+PROPERTY: header-args :tangle bspwmrc :shebang "#!/bin/sh"
+
+* Autostart
+#+BEGIN_SRC bash
+  picom &
+  feh --bg-fill /etc/nixos/wallpapers/monte.jpg &
+  polybar &
+  emote &
+  corectrl &
+  dunst &
+#+END_SRC
+
+* Monitor
+#+BEGIN_SRC bash
+  bspc monitor -d 1 2 3 4 5
+  bspc config remove_disabled_monitors true
+  bspc config merge_overlapping_monitors true
+#+END_SRC
+
+* Border
+#+BEGIN_SRC bash
+  bspc config border_width 6
+  bspc config normal_border_color "#1e1e2e"
+  bspc config focused_border_color "#f38ba8"
+  bspc config borderless_monocle true
+#+END_SRC
+
+* Rules
+#+BEGIN_SRC bash
+  bspc rule -a Emacs state=tiled
+  bspc rule -a Plank manage=on border=off locked=on focus=off follow=off
+#+END_SRC
+
+* Padding & Gap
+#+BEGIN_SRC bash
+  bspc config window_gap 10
+  bspc config top_padding 0
+  bspc config bottom_padding 0
+  bspc config left_padding 0
+  bspc config right_padding 0
+  bspc config gapless_monocle true
+#+END_SRC
+
+* Layout
+#+BEGIN_SRC bash
+  bspc config single_monocle false
+  bspc config split_ratio 0.50
+#+END_SRC
+
+* Mouse
+#+BEGIN_SRC bash
+  bspc config focus_follows_pointer false
+  bspc config pointer_action1 move
+  bspc config pointer_action2 resize_side
+  bspc config pointer_action3 resize_corner
+  bspc config pointer_modifier mod4
+#+END_SRC
