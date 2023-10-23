@@ -9,6 +9,7 @@
     ./home.nix
     ./env.nix
     ./packages.nix
+    ./terminal.nix
   ];
 
   options.vellu.userData = lib.mkOption {
