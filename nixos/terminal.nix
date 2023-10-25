@@ -38,5 +38,6 @@
         nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
         tree = "exa --tree --icons";
       };
+    };
   };
 }
