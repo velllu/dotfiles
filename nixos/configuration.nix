@@ -83,7 +83,11 @@
       portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
-    services.flatpak.enable = true;
-    services.xserver.videoDrivers = [ "modesetting" ];
+    services = {
+      flatpak.enable = true;
+      xserver.videoDrivers = [ "modesetting" ];
+    };
+
+    security.rtkit.enable = true;
   };
 }
