@@ -53,11 +53,11 @@ super + b
 super + Return
   alacritty
 
-super + p
+super + d
    rofi -show drun
 
-super + w
-   rofi -show window
+super + p
+   ~/.config/scripts/power_menu.sh
 
 super + c
    gnome-calculator
