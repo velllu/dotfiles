@@ -17,6 +17,7 @@
       xdg.configFile."polybar".source = ../polybar;
       xdg.configFile."picom".source = ../picom;
       xdg.configFile."alacritty".source = ../alacritty;
+      xdg.configFile."scripts".source = ../scripts;
       home.file.".emacs.d" = { source = ../emacs; recursive = true; };
     
       # GTK theme
