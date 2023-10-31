@@ -29,6 +29,7 @@
       git
       gnome.gnome-font-viewer
       gnome-secrets
+      grapejuice
       helix
       heroic
       htop
