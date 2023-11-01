@@ -36,7 +36,7 @@
         s = "ls";
         switc = "sudo nixos-rebuild switch";
         nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
-        tree = "exa --tree --icons";
+        tree = "exa --tree --icons --git-ignore";
       };
     };
   };
