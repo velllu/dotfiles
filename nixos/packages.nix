@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, nixpkgs-unstable, config, ... }:
 
 {
   config = {
@@ -7,6 +7,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
+      nixpkgs-unstable.legacyPackages."${pkgs.system}".cosmic-comp
       acpi
       alacritty
       alsa-utils
