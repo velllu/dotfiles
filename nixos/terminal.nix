@@ -33,9 +33,10 @@
         grep = "rg";
         less = "moar";
         ls = "exa --long --icons --git --no-permissions";
+        man = "batman";
+        nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
         s = "ls";
         switc = "sudo nixos-rebuild switch";
-        nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
         tree = "exa --tree --icons --git-ignore";
       };
     };
