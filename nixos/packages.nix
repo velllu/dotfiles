@@ -16,7 +16,6 @@
       bspwm
       catppuccin-gtk
       clang-tools
-      discord
       dunst
       emote
       exa
@@ -41,7 +40,9 @@
       neofetch
       neovim
       nil
+      nixpkgs-unstable.legacyPackages."${pkgs.system}".ollama
       ntfs3g
+      obsidian
       openjdk8
       pcmanfm
       pfetch
@@ -57,8 +58,6 @@
       tokei
       tor-browser-bundle-bin
       transmission-gtk
-      # TODO: Figure out how to install unstable packages
-      # unstable.davinci-resolve
       unzip
       via
       virt-manager
