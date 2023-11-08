@@ -4,6 +4,7 @@
   config = {
     nixpkgs.config.permittedInsecurePackages = [
       "python-2.7.18.6"
+      "electron-24.8.6"
     ];
 
     environment.systemPackages = with pkgs; [
