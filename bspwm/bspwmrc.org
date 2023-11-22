@@ -4,7 +4,7 @@
 * Autostart
 #+BEGIN_SRC bash
   picom &
-  feh --bg-fill /etc/nixos/wallpapers/monte.jpg &
+  feh --bg-fill ~/.config/wallpaper &
   polybar &
   emote &
   corectrl &

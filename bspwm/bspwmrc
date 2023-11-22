@@ -1,6 +1,6 @@
 #!/bin/sh
 picom &
-feh --bg-fill /etc/nixos/wallpapers/monte.jpg &
+feh --bg-fill ~/.config/wallpaper &
 polybar &
 emote &
 corectrl &

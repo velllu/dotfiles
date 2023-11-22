@@ -18,6 +18,7 @@
       xdg.configFile."picom".source = ../picom;
       xdg.configFile."alacritty".source = ../alacritty;
       xdg.configFile."scripts".source = ../scripts;
+      xdg.configFile."wallpaper".source = ../wallpapers/monet.png;
       home.file.".emacs.d" = { source = ../emacs; recursive = true; };
     
       # GTK theme
