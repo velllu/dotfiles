@@ -32,7 +32,7 @@
         clear = "clear && pfetch";
         grep = "rg";
         less = "moar";
-        ls = "exa --long --icons --git --no-permissions";
+        ls = "exa --long --icons --git --no-permissions --sort type";
         man = "batman";
         nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
         s = "ls";
