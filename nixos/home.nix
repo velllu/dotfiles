@@ -18,19 +18,21 @@
       xdg.configFile."picom".source = ../picom;
       xdg.configFile."alacritty".source = ../alacritty;
       xdg.configFile."scripts".source = ../scripts;
-      xdg.configFile."wallpaper".source = ../wallpapers/monet.png;
+      xdg.configFile."helix".source = ../helix;
+      xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
       home.file.".emacs.d" = { source = ../emacs; recursive = true; };
     
       # GTK theme
       gtk = {
         enable = true;
         theme = {
-          name = "Catppuccin-Mocha-Standard-Red-Dark";
-          package = pkgs.catppuccin-gtk.override {
-            accents = [ "red" ];
-            tweaks = [ "rimless" ];
-            variant = "mocha";
-          };
+          name = "Tokyonight-Dark-B";
+          package = pkgs.tokyo-night-gtk;
+          # package = pkgs.catppuccin-gtk.override {
+          #   accents = [ "red" ];
+          #   tweaks = [ "rimless" ];
+          #   variant = "mocha";
+          # };
         };
       };
     };

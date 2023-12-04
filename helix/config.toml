@@ -1,0 +1,20 @@
+theme = "tokyonight_transparent"
+
+[editor.indent-guides]
+render = true
+
+[editor]
+rulers = [ 90 ]
+cursorline = true
+color-modes = true
+
+[keys.normal]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+G = "goto_file_end"
+esc = "collapse_selection" # Unselect
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"

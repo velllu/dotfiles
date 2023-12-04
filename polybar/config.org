@@ -4,15 +4,14 @@
 * Colors
 #+BEGIN_SRC toml
   [colors]
-  foreground = #cdd6f4
-  background = #e611111b
+  foreground = #c0caf5
+  background = #1a1b26
 
-  workspaces-underline-color = #f38ba8
-
-  window-title-underline-color = #fab387
-  volume-underline-color = #a6e3a1
-  date-underline-color = #89b4fa
-  computer-data-underline-color = #94e2d5
+  workspaces-underline-color = #f7768e
+  window-title-underline-color = #e0af68
+  volume-underline-color = #bb9af7
+  date-underline-color = #7aa2f7
+  computer-data-underline-color = #7dcfff
 #+END_SRC
 
 * Positioning
