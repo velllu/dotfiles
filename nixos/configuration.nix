@@ -24,9 +24,28 @@
   config = {
     system.stateVersion = config.vellu.userData.nixosVersion;
 
-    boot = {
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
+    boot.loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+        extraEntries = ''
+          menuentry "Reboot" {
+            reboot
+          }
+          menuentry "Poweroff" {
+            halt
+          }
+        '';
+        extraConfig = ''
+          GRUB_CMDLINE_LINUX_DEFAULT="amd_iommu=on iommu=pt video=efifb:off"
+        '';
+        };
     };
 
     networking = {
@@ -65,6 +84,7 @@
     hardware = {
       keyboard.qmk.enable = true;
       opengl.driSupport32Bit = true; # for 32 bit wine apps
+      opengl.enable = true;
     };
 
     programs = {
