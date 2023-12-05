@@ -8,7 +8,6 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      virtiofsd
       acpi
       alacritty
       alsa-utils
@@ -61,7 +60,9 @@
       tor-browser-bundle-bin
       transmission-gtk
       unzip
+      vesktop
       via
+      virtiofsd
       virt-manager
       vscodium
       wineWowPackages.full
