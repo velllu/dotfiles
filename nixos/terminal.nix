@@ -32,12 +32,11 @@
         clear = "clear && pfetch";
         grep = "rg";
         less = "moar";
-        ls = "exa --long --icons --git --no-permissions --sort type";
+        ls = "eza --long --icons --git --no-permissions --sort type";
         man = "batman";
-        nvim = "echo Remember that you switched to helix!! && echo senile dementia && false";
         s = "ls";
         switc = "sudo nixos-rebuild switch";
-        tree = "exa --tree --icons --git-ignore";
+        tree = "eza --tree --icons --git-ignore";
       };
     };
   };

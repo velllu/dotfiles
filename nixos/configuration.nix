@@ -17,7 +17,7 @@
     default = {
       username = "vellu";
       fullname = "Vellu";
-      nixosVersion = "23.05";
+      nixosVersion = "23.11";
     };
   };
 

@@ -20,7 +20,7 @@
       clang-tools
       dunst
       emote
-      exa
+      eza
       fd
       feh
       firefox
@@ -70,7 +70,7 @@
     ];
 
     # Iosevka font
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Iosevka" ]; })
     ];
 
