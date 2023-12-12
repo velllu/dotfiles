@@ -5,7 +5,7 @@
     users.users."${config.vellu.userData.username}" = {
       isNormalUser = true;
       description = config.vellu.userData.fullname;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" ];
     };
 
     home-manager.users."${config.vellu.userData.username}" = {
