@@ -22,6 +22,7 @@
       eza
       fd
       feh
+      ffmpeg
       firefox
       flameshot
       gcc
@@ -33,6 +34,7 @@
       helix
       heroic
       htop
+      kdenlive
       killall
       libqalculate
       lutris
@@ -65,6 +67,7 @@
       virtiofsd
       virt-manager
       vscodium
+      wget
       wineWowPackages.full
       xorg.xkill
       yt-dlp
