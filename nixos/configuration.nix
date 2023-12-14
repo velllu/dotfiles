@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./bspwm.nix
     ./sound.nix
     ./home.nix
     ./env.nix
