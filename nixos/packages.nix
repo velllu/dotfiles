@@ -17,6 +17,7 @@
       bspwm
       catppuccin-gtk
       clang-tools
+      distrobox
       dunst
       emote
       eza
