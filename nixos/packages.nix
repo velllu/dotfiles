@@ -59,6 +59,7 @@
       rofi
       superTuxKart
       sxhkd
+      tealdeer
       tokei
       tor-browser-bundle-bin
       transmission-gtk
