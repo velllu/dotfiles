@@ -39,6 +39,7 @@
       killall
       libqalculate
       lutris
+      mangohud
       moar
       mpv
       neofetch
