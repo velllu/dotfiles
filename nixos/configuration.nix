@@ -50,6 +50,10 @@
     networking = {
       hostName = "nixos";
       networkmanager.enable = true;
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ 3000 ];
+      };
     };
 
     time.timeZone = "Europe/Rome";
