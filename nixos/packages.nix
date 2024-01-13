@@ -31,6 +31,7 @@
       git
       gnome.gnome-font-viewer
       gnome-secrets
+      godot_4
       grapejuice
       helix
       heroic
@@ -56,6 +57,7 @@
       polkit_gnome
       polybar
       prismlauncher
+      reaper
       ripgrep
       rofi
       superTuxKart
