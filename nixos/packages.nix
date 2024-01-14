@@ -45,7 +45,8 @@
       mpv
       neofetch
       neovim
-      nil
+      nil # Nix language lsp
+      nixpkgs-fmt # Nix language formatter
       nixpkgs-unstable.legacyPackages."${pkgs.system}".ollama
       ntfs3g
       obsidian
