@@ -8,6 +8,8 @@
     ];
 
     environment.systemPackages = with pkgs; [
+      simplescreenrecorder
+      fastfetch
       acpi
       alacritty
       alsa-utils
@@ -43,7 +45,6 @@
       mangohud
       moar
       mpv
-      neofetch
       neovim
       nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
@@ -52,7 +53,6 @@
       obsidian
       openjdk8
       pcmanfm
-      pfetch
       picom
       poetry
       polkit_gnome

@@ -21,7 +21,7 @@
       enable = true;
 
       shellInit = ''
-        pfetch
+        fastfetch -l nixos_small
 
         set -U fish_greeting # disable greeting
         fish_vi_key_bindings
