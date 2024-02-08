@@ -5,6 +5,8 @@
 
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-colors.url = "github:Misterio77/nix-colors";
   };
 
   outputs = {

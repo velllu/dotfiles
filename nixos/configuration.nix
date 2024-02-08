@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, inputs, ... }:
 
 {
   imports = [
@@ -10,13 +10,42 @@
     ./packages.nix
     ./terminal.nix
     ./wm.nix
+
+    ../alacritty/alacritty.nix
+    ../bspwm/bspwm.nix
+    ../helix/helix.nix
+    ../polybar/polybar.nix
   ];
 
-  options.vellu.userData = lib.mkOption {
-    default = {
-      username = "vellu";
-      fullname = "Vellu";
-      nixosVersion = "23.11";
+  options.vellu = {
+    other = lib.mkOption {
+      default = {
+        autostart = [
+          "picom"
+          "feh --bg-fill ~/.config/wallpaper"
+          "polybar"
+          "emote"
+          "corectrl"
+          "dunst"
+        ];
+      };
+    };
+
+    theming = lib.mkOption {
+      default = {
+        colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+        accent = config.vellu.theming.colorScheme.colors.base08;
+        font = "Iosevka Nerd Font";
+        isDark = true;
+      };
+    };
+
+    userData = lib.mkOption {
+      default = {
+        username = "vellu";
+        fullname = "Vellu";
+        nixosVersion = "23.11";
+      };
     };
   };
 

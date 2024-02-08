@@ -16,7 +16,6 @@
       bat
       bat-extras.batman
       blender
-      bspwm
       catppuccin-gtk
       clang-tools
       distrobox
@@ -63,6 +62,7 @@
       rofi
       superTuxKart
       sxhkd
+      swayfx
       tealdeer
       tokei
       tor-browser-bundle-bin
