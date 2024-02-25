@@ -39,7 +39,7 @@
             else "#${colorScheme.colors.base00}";
 
           gray = "#${colorScheme.colors.base01}";
-          #dark-gray = "#${colorScheme.colors.base02}";
+          dark-gray = "#${colorScheme.colors.base02}";
           #white = "#${colorScheme.colors.base07}";
           #black = "#${colorScheme.colors.base00}";
           red = "#${colorScheme.colors.base08}";
@@ -90,7 +90,7 @@
           "ui.background" = { bg = background; };
           "ui.linenr" = { fg = gray; };
           "ui.linenr.selected" = { fg = yellow; };
-          "ui.cursorline" = { bg = background; };
+          "ui.cursorline" = { bg = gray; };
           "ui.statusline" = { fg = foreground; bg = background; };
           "ui.statusline.normal" = { fg = foreground; bg = background; };
           "ui.statusline.insert" = { fg = foreground; bg = blue; };
@@ -102,13 +102,14 @@
           "ui.text" = { fg = foreground; };
           "ui.text.focus" = { fg = foreground; };
           "ui.selection" = { bg = background; };
-          "ui.selection.primary" = { bg = background; };
+          "ui.selection.primary" = { bg = gray; };
           "ui.cursor.primary" = { bg = foreground; fg = background; };
           "ui.cursor.match" = { bg = background; };
           "ui.menu" = { fg = foreground; bg = background; };
           "ui.menu.selected" = { fg = background; bg = blue; modifiers = ["bold"]; };
           "ui.virtual.whitespace" = background;
-          "ui.virtual.ruler" = { bg = background; };
+          "ui.virtual.ruler" = { bg = gray; };
+          "ui.virtual.indent-guide" = { fg = dark-gray; };
           "ui.virtual.inlay-hint" = { fg = gray; };
           "ui.virtual.wrap" = { fg = background; };
 
