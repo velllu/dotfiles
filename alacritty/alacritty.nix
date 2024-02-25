@@ -24,7 +24,7 @@
 
         colors = with config.vellu.theming.colorScheme.colors; {
           bright = {
-            black = "0x${base00}";
+            black = "0x${base02}";
             blue = "0x${base0D}";
             cyan = "0x${base0C}";
             green = "0x${base0B}";
@@ -40,7 +40,7 @@
           };
 
           normal = {
-            black = "0x${base00}";
+            black = "0x${base02}";
             blue = "0x${base0D}";
             cyan = "0x${base0C}";
             green = "0x${base0B}";
