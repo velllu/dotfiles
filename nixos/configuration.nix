@@ -33,8 +33,8 @@
 
     theming = lib.mkOption {
       default = {
-        colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
-        accent = config.vellu.theming.colorScheme.colors.base08;
+        colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
+        accent = config.vellu.theming.colorScheme.colors.base0D;
         font = "Iosevka Nerd Font";
         isDark = true;
       };
