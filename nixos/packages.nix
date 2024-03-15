@@ -8,8 +8,6 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      simplescreenrecorder
-      fastfetch
       acpi
       alacritty
       alsa-utils
@@ -22,6 +20,7 @@
       dunst
       emote
       eza
+      fastfetch
       fd
       feh
       ffmpeg
@@ -60,9 +59,10 @@
       reaper
       ripgrep
       rofi
+      simplescreenrecorder
       superTuxKart
-      sxhkd
       swayfx
+      sxhkd
       tealdeer
       tokei
       tor-browser-bundle-bin
