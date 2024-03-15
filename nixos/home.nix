@@ -19,7 +19,7 @@ in
       xdg.configFile."scripts".source = ../scripts;
       xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
       xdg.configFile."picom".source = ../picom;
-    
+
       # GTK theme
       gtk = {
         enable = true;
