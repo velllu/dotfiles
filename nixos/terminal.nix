@@ -44,13 +44,13 @@
         set -g fish_color_redirection $foreground
         set -g fish_color_end $orange
         set -g fish_color_error $red
-        set -g fish_color_param $purple
+        set -g fish_color_param $orange
         set -g fish_color_comment $comment
         set -g fish_color_selection --background=$selection
         set -g fish_color_search_match --background=$selection
         set -g fish_color_operator $green
         set -g fish_color_escape $orange
-        set -g fish_color_autosuggestion $comment
+        set -g fish_color_autosuggestion $yellow
 
         # Completion Pager Colors
         set -g fish_pager_color_progress $comment
