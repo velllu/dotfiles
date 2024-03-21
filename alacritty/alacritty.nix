@@ -22,7 +22,7 @@
           size = 18.0;
         };
 
-        colors = with config.vellu.theming.colorScheme.colors; {
+        colors = with config.vellu.theming.colorScheme.palette; {
           bright = {
             black = "0x${base02}";
             blue = "0x${base0D}";

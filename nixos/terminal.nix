@@ -26,15 +26,15 @@
         set -U fish_greeting # disable greeting
         fish_vi_key_bindings
 
-        set -l foreground ${config.vellu.theming.colorScheme.colors.base07}
-        set -l selection ${config.vellu.theming.colorScheme.colors.base01}
-        set -l comment ${config.vellu.theming.colorScheme.colors.base00}
-        set -l red ${config.vellu.theming.colorScheme.colors.base08}
-        set -l orange ${config.vellu.theming.colorScheme.colors.base09}
-        set -l yellow ${config.vellu.theming.colorScheme.colors.base0A}
-        set -l green ${config.vellu.theming.colorScheme.colors.base0B}
-        set -l purple ${config.vellu.theming.colorScheme.colors.base0E}
-        set -l cyan ${config.vellu.theming.colorScheme.colors.base0C}
+        set -l foreground ${config.vellu.theming.colorScheme.palette.base07}
+        set -l selection ${config.vellu.theming.colorScheme.palette.base01}
+        set -l comment ${config.vellu.theming.colorScheme.palette.base00}
+        set -l red ${config.vellu.theming.colorScheme.palette.base08}
+        set -l orange ${config.vellu.theming.colorScheme.palette.base09}
+        set -l yellow ${config.vellu.theming.colorScheme.palette.base0A}
+        set -l green ${config.vellu.theming.colorScheme.palette.base0B}
+        set -l purple ${config.vellu.theming.colorScheme.palette.base0E}
+        set -l cyan ${config.vellu.theming.colorScheme.palette.base0C}
 
         # Syntax Highlighting Colors
         set -g fish_color_normal $foreground

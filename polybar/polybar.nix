@@ -6,7 +6,7 @@
       services.polybar.enable = true;
       services.polybar.script = "polybar bar &";
       services.polybar.settings = {
-        colors = with config.vellu.theming.colorScheme.colors; {
+        colors = with config.vellu.theming.colorScheme.palette; {
           background = "#${base00}";
           foreground = "#${base06}";
 

@@ -21,7 +21,7 @@
           merge_overlapping_monitors = true;
 
           # Borders
-          normal_border_color = "#${config.vellu.theming.colorScheme.colors.base00}";
+          normal_border_color = "#${config.vellu.theming.colorScheme.palette.base00}";
           focused_border_color = "#${config.vellu.theming.accent}";
           borderless_monocle = true;
           border_width = 6;

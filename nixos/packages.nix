@@ -47,6 +47,7 @@
       nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
       nixpkgs-unstable.legacyPackages."${pkgs.system}".ollama
+      nixpkgs-unstable.legacyPackages."${pkgs.system}".vesktop
       ntfs3g
       obsidian
       openjdk8
@@ -68,7 +69,6 @@
       tor-browser-bundle-bin
       transmission-gtk
       unzip
-      vesktop
       via
       virtiofsd
       virt-manager

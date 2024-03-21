@@ -35,20 +35,20 @@
           background = "none";
 
           foreground = if isDark
-            then "#${colorScheme.colors.base07}"
-            else "#${colorScheme.colors.base00}";
+            then "#${colorScheme.palette.base07}"
+            else "#${colorScheme.palette.base00}";
 
-          gray = "#${colorScheme.colors.base01}";
-          dark-gray = "#${colorScheme.colors.base02}";
-          #white = "#${colorScheme.colors.base07}";
-          #black = "#${colorScheme.colors.base00}";
-          red = "#${colorScheme.colors.base08}";
-          green = "#${colorScheme.colors.base0B}";
-          yellow = "#${colorScheme.colors.base0A}";
-          orange = "#${colorScheme.colors.base09}";
-          blue = "#${colorScheme.colors.base0D}";
-          magenta = "#${colorScheme.colors.base0E}";
-          cyan = "#${colorScheme.colors.base0C}";
+          gray = "#${colorScheme.palette.base01}";
+          dark-gray = "#${colorScheme.palette.base02}";
+          #white = "#${colorScheme.palette.base07}";
+          #black = "#${colorScheme.palette.base00}";
+          red = "#${colorScheme.palette.base08}";
+          green = "#${colorScheme.palette.base0B}";
+          yellow = "#${colorScheme.palette.base0A}";
+          orange = "#${colorScheme.palette.base09}";
+          blue = "#${colorScheme.palette.base0D}";
+          magenta = "#${colorScheme.palette.base0E}";
+          cyan = "#${colorScheme.palette.base0C}";
         in {
           "attribute" = cyan;
           "keyword" = { fg = red; };
