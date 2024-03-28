@@ -17,7 +17,7 @@ in
       # Config files
       xdg.configFile."sxhkd".source = ../sxhkd;
       xdg.configFile."scripts".source = ../scripts;
-      xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
+      xdg.configFile."wallpaper".source = ../wallpapers/sasuke.png;
       xdg.configFile."picom".source = ../picom;
 
       # GTK theme
