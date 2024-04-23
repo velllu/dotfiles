@@ -15,7 +15,6 @@
       bat-extras.batman
       blender
       catppuccin-gtk
-      clang-tools
       distrobox
       dunst
       emote
@@ -46,7 +45,6 @@
       neovim
       nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
-      nixpkgs-unstable.legacyPackages."${pkgs.system}".ollama
       nixpkgs-unstable.legacyPackages."${pkgs.system}".vesktop
       ntfs3g
       obsidian
@@ -72,7 +70,7 @@
       via
       virtiofsd
       virt-manager
-      vscodium
+      vscode
       wget
       wineWowPackages.full
       xorg.xkill
