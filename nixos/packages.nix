@@ -14,7 +14,6 @@
       bat
       bat-extras.batman
       blender
-      catppuccin-gtk
       distrobox
       dunst
       emote
@@ -31,7 +30,6 @@
       gnome.gnome-font-viewer
       gnome-secrets
       godot_4
-      grapejuice
       helix
       heroic
       htop
@@ -81,36 +79,5 @@
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Iosevka" ]; })
     ];
-
-    # Emacs config
-    home-manager.users."${config.vellu.userData.username}" = { pkgs, ... }: {
-      programs.emacs = {
-        enable = true;
-        package = pkgs.emacs29-gtk3;
-        extraPackages = epkgs: [
-          epkgs.all-the-icons
-          epkgs.all-the-icons-ivy-rich
-          epkgs.catppuccin-theme
-          epkgs.company
-          epkgs.company-box
-          epkgs.counsel
-          epkgs.dashboard
-          epkgs.doom-themes
-          epkgs.eldoc-box
-          epkgs.esup
-          epkgs.evil
-          epkgs.highlight-indent-guides
-          epkgs.ivy-rich
-          epkgs.linum-relative
-          epkgs.markdown-mode
-          epkgs.mini-frame
-          epkgs.nix-mode
-          epkgs.org-bullets
-          epkgs.rust-mode
-          epkgs.treesit-auto
-          epkgs.yaml-mode
-        ];
-      };
-    };
   };
 }

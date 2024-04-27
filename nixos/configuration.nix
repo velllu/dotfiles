@@ -66,14 +66,12 @@
           menuentry "Reboot" {
             reboot
           }
+
           menuentry "Poweroff" {
             halt
           }
         '';
-        extraConfig = ''
-          GRUB_CMDLINE_LINUX_DEFAULT="amd_iommu=on iommu=pt video=efifb:off"
-        '';
-        };
+      };
     };
 
     networking = {
@@ -132,7 +130,6 @@
 
     xdg = {
       portal.enable = true;
-      # portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     services = {
