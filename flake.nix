@@ -24,6 +24,23 @@
 
         modules = [
           ./nixos/configuration.nix
+          ./nixos/packages-extra.nix
+
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+            };
+          }
+        ];
+      };
+
+      minimal = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs nixpkgs-unstable;};
+
+        modules = [
+          ./nixos/configuration.nix
 
           inputs.home-manager.nixosModules.home-manager
           {

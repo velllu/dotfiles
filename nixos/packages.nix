@@ -7,13 +7,13 @@
       "electron-25.9.0"
     ];
 
+    # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
       acpi
       alacritty
       alsa-utils
       bat
       bat-extras.batman
-      blender
       distrobox
       dunst
       emote
@@ -25,19 +25,12 @@
       firefox
       flameshot
       gcc
-      gimp
       git
       gnome.gnome-font-viewer
       gnome-secrets
-      godot_4
-      helix
-      heroic
       htop
-      kdenlive
       killall
       libqalculate
-      lutris
-      mangohud
       moar
       mpv
       neovim
@@ -49,16 +42,11 @@
       openjdk8
       pcmanfm
       picom
-      poetry
       polkit_gnome
       polybar
-      prismlauncher
-      reaper
       ripgrep
       rofi
       simplescreenrecorder
-      superTuxKart
-      swayfx
       sxhkd
       tealdeer
       tokei
