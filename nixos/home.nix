@@ -11,6 +11,13 @@ in
       extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" ];
     };
 
+    # When running in a vm set a default password
+    virtualisation.vmVariant = {
+      users.users."${config.vellu.userData.username}" = {
+        initialPassword = "vm";
+      };
+    };
+
     home-manager.users."${config.vellu.userData.username}" = {
       home.stateVersion = config.vellu.userData.nixosVersion;
 

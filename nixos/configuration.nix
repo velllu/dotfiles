@@ -106,6 +106,12 @@
         defaultNetwork.settings.dns_enabled = true;
       };
 
+      # The specs when using `nixos-rebuild build-vm`, these are hard coded
+      vmVariant.virtualisation = {
+        memorySize = 1024 * 4;
+        cores = 6;
+      };
+
       docker.enable = true;
       libvirtd.enable = true;
       spiceUSBRedirection.enable = true;
