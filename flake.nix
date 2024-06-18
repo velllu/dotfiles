@@ -1,9 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-colors.url = "github:Misterio77/nix-colors";
@@ -12,7 +10,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     ...
   } @ inputs: let
@@ -20,7 +17,7 @@
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs nixpkgs-unstable;};
+        specialArgs = {inherit inputs outputs;};
 
         modules = [
           ./nixos/configuration.nix
@@ -37,7 +34,7 @@
       };
 
       minimal = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs nixpkgs-unstable;};
+        specialArgs = {inherit inputs outputs;};
 
         modules = [
           ./nixos/configuration.nix

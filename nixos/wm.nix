@@ -1,21 +1,16 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   config = {
-    services.xserver = {
+    programs.sway = {
       enable = true;
+      wrapperFeatures.gtk = true;
+      package = pkgs.swayfx;
+    };
 
-      desktopManager = {
-        xterm.enable = false;
-      };
-   
-      displayManager = {
-        defaultSession = "none+bspwm";
-      };
-
-      windowManager.bspwm = {
-        enable = true;
-      };
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
     };
   };
 }

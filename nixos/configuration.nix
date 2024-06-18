@@ -12,25 +12,11 @@
     ./wm.nix
 
     ../alacritty/alacritty.nix
-    ../bspwm/bspwm.nix
     ../helix/helix.nix
-    ../polybar/polybar.nix
+    ../sway/sway.nix
   ];
 
   options.vellu = {
-    other = lib.mkOption {
-      default = {
-        autostart = [
-          "picom"
-          "feh --bg-fill ~/.config/wallpaper"
-          "polybar"
-          "emote"
-          "corectrl"
-          "dunst"
-        ];
-      };
-    };
-
     theming = lib.mkOption {
       default = {
         colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
@@ -44,7 +30,7 @@
       default = {
         username = "vellu";
         fullname = "Vellu";
-        nixosVersion = "23.11";
+        nixosVersion = "24.05";
       };
     };
   };

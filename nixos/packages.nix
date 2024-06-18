@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, config, ... }:
+{ pkgs, config, ... }:
 
 {
   config = {
@@ -20,7 +20,6 @@
       eza
       fastfetch
       fd
-      feh
       ffmpeg
       firefox
       flameshot
@@ -36,7 +35,6 @@
       neovim
       nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
-      nixpkgs-unstable.legacyPackages."${pkgs.system}".vesktop
       ntfs3g
       obsidian
       openjdk8
@@ -52,6 +50,7 @@
       tokei
       transmission-gtk
       unzip
+      vesktop
       via
       virtiofsd
       virt-manager
