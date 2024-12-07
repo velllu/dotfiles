@@ -109,8 +109,11 @@
 
     hardware = {
       keyboard.qmk.enable = true;
-      opengl.driSupport32Bit = true; # for 32 bit wine apps
-      opengl.enable = true;
+
+      graphics = {
+        enable = true;
+        enable32Bit = true; # for 32 bit wine apps
+      };
     };
 
     programs = {
@@ -135,5 +138,14 @@
     };
 
     security.rtkit.enable = true;
+
+    # These make sure that the channel used by `nix-shell` is the same as this flake
+    systemd.tmpfiles.rules = [
+      "L+ /tmp/nixPath - - - - ${pkgs.path}"
+    ];
+
+    nix = {
+      nixPath = [ "nixpkgs=/tmp/nixPath" ];
+    };
   };
 }

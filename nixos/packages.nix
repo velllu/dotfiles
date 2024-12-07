@@ -25,7 +25,7 @@
       flameshot
       gcc
       git
-      gnome.gnome-font-viewer
+      gnome-font-viewer
       gnome-secrets
       htop
       killall
@@ -48,7 +48,7 @@
       sxhkd
       tealdeer
       tokei
-      transmission-gtk
+      transmission_4-gtk
       unzip
       vesktop
       via
