@@ -8,7 +8,7 @@ in
     users.users."${config.vellu.userData.username}" = {
       isNormalUser = true;
       description = config.vellu.userData.fullname;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" ];
     };
 
     # When running in a vm set a default password
