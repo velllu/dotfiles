@@ -8,7 +8,9 @@ in
     users.users."${config.vellu.userData.username}" = {
       isNormalUser = true;
       description = config.vellu.userData.fullname;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" "dialout" ];
+
+      # `dialout` is for the raspberry pi pico
     };
 
     # When running in a vm set a default password

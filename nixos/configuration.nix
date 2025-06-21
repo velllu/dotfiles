@@ -136,17 +136,18 @@
       flatpak.enable = true;
       xserver.videoDrivers = [ "modesetting" ];
       udev.extraRules = builtins.readFile ../udev-rules;
-      udev.packages = [
-        (pkgs.stdenv.mkDerivation {
-          name = "probe-rs-rules";
-          src = ../probe-rs/69-probe-rs.rules;
-          dontUnpack = true;
-          installPhase = ''
-            mkdir -p $out/lib/udev/rules.d
-            cp $src $out/lib/udev/rules.d/69-probe-rs.rules
-          '';
-        })
-      ];
+      udisks2.enable = true;
+      # udev.packages = [
+      #   (pkgs.stdenv.mkDerivation {
+      #     name = "probe-rs-rules";
+      #     src = ../probe-rs/69-probe-rs.rules;
+      #     dontUnpack = true;
+      #     installPhase = ''
+      #       mkdir -p $out/lib/udev/rules.d
+      #       cp $src $out/lib/udev/rules.d/69-probe-rs.rules
+      #     '';
+      #   })
+      # ];
     };
 
     security.rtkit.enable = true;
