@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   config = {
@@ -9,6 +9,7 @@
 
     # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
+      inputs.quickshell.packages.${system}.default
       acpi
       alacritty
       alsa-utils
@@ -27,9 +28,11 @@
       git
       gnome-font-viewer
       gnome-secrets
+      grim
       htop
       killall
       libqalculate
+      lm_sensors
       moar
       mpv
       neovim
@@ -45,6 +48,7 @@
       ripgrep
       rofi
       simplescreenrecorder
+      slurp
       sxhkd
       tealdeer
       tokei
@@ -57,6 +61,7 @@
       vscode
       wget
       wineWowPackages.full
+      wl-clipboard
       xorg.xkill
       yt-dlp
     ];

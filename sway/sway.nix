@@ -12,6 +12,8 @@ in
         checkConfig = false; # TODO: Remove this when it gets fixed
 
         config = {
+          bars = []; # No sway bar
+
           keybindings = {
             "${modifier}+Shift+Alt+q" = "swaymsg exit";
             "${modifier}+q" = "kill";
@@ -63,7 +65,7 @@ in
             "${modifier}+Return" = "exec alacritty";
             "${modifier}+d" = "exec rofi -show drun";
             "${modifier}+p" = "exec ~/.config/scripts/power_menu.sh";
-            "${modifier}+Shift+s" = "exec flameshot gui";
+            "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
             
             "${modifier}+o" = "layout toggle split"; # Rotate
           };
@@ -76,6 +78,12 @@ in
           startup = [
             { command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper"; always = true; }
             { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
+
+            # This is an awful solution, but quickshell seems not to work with symlinks,
+            # so I must delete home-manager generated symlinks and replace them as actual
+            # files, only then can I start quickshell
+            { command = "rm -rf ~/.config/qs && mkdir ~/.config/qs && cp ~/.config/quickshell/* ~/.config/qs/ && rm -rf ~/.config/quickshell/* && mv ~/.config/qs/* ~/.config/quickshell && qs -d -n"; always = true; }
+
             { command = "emote"; }
             { command = "corectrl"; }
           ];

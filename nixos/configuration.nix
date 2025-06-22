@@ -19,8 +19,8 @@
   options.vellu = {
     theming = lib.mkOption {
       default = {
-        colorScheme = inputs.nix-colors.colorSchemes.ayu-dark;
-        accent = config.vellu.theming.colorScheme.palette.base0D;
+        colorScheme = inputs.nix-colors.colorSchemes.everforest;
+        accent = config.vellu.theming.colorScheme.palette.base0B;
         font = "Iosevka Nerd Font";
         isDark = true;
       };
