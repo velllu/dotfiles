@@ -8,7 +8,7 @@
       godot_4
       heroic
       jetbrains.idea-community
-      kdenlive
+      kdePackages.kdenlive
       mangohud
       prismlauncher
       reaper

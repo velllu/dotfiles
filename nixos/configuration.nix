@@ -30,7 +30,7 @@
       default = {
         username = "vellu";
         fullname = "Vellu";
-        nixosVersion = "24.05";
+        nixosVersion = "25.05";
       };
     };
   };
@@ -136,18 +136,9 @@
       flatpak.enable = true;
       xserver.videoDrivers = [ "modesetting" ];
       udev.extraRules = builtins.readFile ../udev-rules;
+      
+      # This must be set for my raspberry pi pico to work
       udisks2.enable = true;
-      # udev.packages = [
-      #   (pkgs.stdenv.mkDerivation {
-      #     name = "probe-rs-rules";
-      #     src = ../probe-rs/69-probe-rs.rules;
-      #     dontUnpack = true;
-      #     installPhase = ''
-      #       mkdir -p $out/lib/udev/rules.d
-      #       cp $src $out/lib/udev/rules.d/69-probe-rs.rules
-      #     '';
-      #   })
-      # ];
     };
 
     security.rtkit.enable = true;
