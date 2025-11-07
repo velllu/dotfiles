@@ -30,7 +30,7 @@
 
         modules = [
           ./nixos/configuration.nix
-          ./nixos/packages-extra.nix
+          ./nixos/extra.nix
 
           inputs.home-manager.nixosModules.home-manager
           {

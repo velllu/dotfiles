@@ -20,7 +20,7 @@
     theming = lib.mkOption {
       default = {
         colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
-        accent = config.vellu.theming.colorScheme.palette.base0D;
+        accent = config.vellu.theming.colorScheme.palette.base08;
         font = "Iosevka Nerd Font";
         isDark = true;
       };
@@ -136,7 +136,7 @@
       flatpak.enable = true;
       xserver.videoDrivers = [ "modesetting" ];
       udev.extraRules = builtins.readFile ../udev-rules;
-      
+
       # This must be set for my raspberry pi pico to work
       udisks2.enable = true;
     };
