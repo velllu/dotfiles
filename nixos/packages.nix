@@ -10,13 +10,13 @@
     # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
       inputs.quickshell.packages.${system}.default
+      p7zip
       acpi
       alacritty
       alsa-utils
       bat
       bat-extras.batman
       distrobox
-      dunst
       emote
       eza
       fastfetch
@@ -26,6 +26,7 @@
       flameshot
       gcc
       git
+      git-lfs
       gnome-font-viewer
       gnome-secrets
       grim
@@ -39,10 +40,10 @@
       nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
       ntfs3g
+      mako
       obsidian
       openjdk8
       pcmanfm
-      picom
       polkit_gnome
       polybar
       ripgrep

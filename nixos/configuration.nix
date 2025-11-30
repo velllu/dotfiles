@@ -20,7 +20,7 @@
     theming = lib.mkOption {
       default = {
         colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
-        accent = config.vellu.theming.colorScheme.palette.base08;
+        accent = config.vellu.theming.colorScheme.palette.base0D;
         font = "Iosevka Nerd Font";
         isDark = true;
       };
@@ -69,7 +69,7 @@
       networkmanager.enable = true;
       firewall = {
         enable = true;
-        allowedTCPPorts = [ 3000 ];
+        allowedTCPPorts = [ 3000 139 445 ];
       };
     };
 
@@ -120,6 +120,7 @@
       steam.enable = true;
       corectrl.enable = true;
       dconf.enable = true;
+      git.lfs.enable = true; # Enable large file storage for git
 
       direnv = {
         enable = true;

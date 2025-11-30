@@ -14,11 +14,5 @@
       reaper
       tor-browser-bundle-bin
     ];
-
-    # Game streaming
-    services.sunshine = {
-      enable = true;
-      openFirewall = true;
-    };
   };
 }

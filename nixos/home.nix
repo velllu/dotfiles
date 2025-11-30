@@ -25,7 +25,7 @@ in
 
       # Config files
       xdg.configFile."scripts".source = ../scripts;
-      xdg.configFile."wallpaper".source = ../wallpapers/spinoff.png;
+      xdg.configFile."wallpaper".source = ../wallpapers/peso.png;
 
       # Bar config
       xdg.configFile."quickshell/shell.qml".source = ../quickshell/shell.qml;
