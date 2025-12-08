@@ -9,7 +9,7 @@
 
     # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
-      inputs.quickshell.packages.${system}.default
+      inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
       p7zip
       acpi
       alacritty
@@ -34,7 +34,7 @@
       killall
       libqalculate
       lm_sensors
-      moar
+      moor
       mpv
       neovim
       nil # Nix language lsp

@@ -64,7 +64,7 @@
         cat = "bat --style plain -P";
         clear = "clear && fastfetch -l nixos_small";
         grep = "rg";
-        less = "moar";
+        less = "moor";
         ls = "eza --long --icons --git --no-permissions --sort type";
         man = "batman";
         s = "ls";
