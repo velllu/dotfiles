@@ -1,7 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,52 +17,52 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-colors.url = "github:Misterio77/nix-colors";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    quickshell,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs:
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
 
-        modules = [
-          ./nixos/configuration.nix
-          ./nixos/extra.nix
-
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-            };
-          }
-        ];
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
       };
 
-      minimal = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-
+      # Template
+      mkSystem = modules: nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs outputs; };
         modules = [
-          ./nixos/configuration.nix
-
+          inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
             };
+            nixpkgs.overlays = [ overlay-unstable ];
           }
+        ] ++ modules; # Append host-specific modules
+      };
+    in
+    {
+      nixosConfigurations = {
+        # Fully featured system
+        # Runnable as the default
+        nixos = mkSystem [
+          ./nixos/configuration.nix
+          ./nixos/extra.nix
+        ];
+
+        # Minimal system with heavy applications left out
+        # Runnable with `sudo nixos-rebuild switch --flake .#minimal`
+        minimal = mkSystem [
+          ./nixos/configuration.nix
         ];
       };
     };
-  };
 }

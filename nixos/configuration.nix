@@ -11,7 +11,10 @@
     ./terminal.nix
     ./wm.nix
 
+    # TODO: Implement VSCODE too
+
     ../alacritty/alacritty.nix
+    ../firefox/firefox.nix
     ../helix/helix.nix
     ../sway/sway.nix
   ];
@@ -19,24 +22,41 @@
   options.vellu = {
     theming = lib.mkOption {
       default = {
-        colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
-        accent = config.vellu.theming.colorScheme.palette.base0D;
         font = "Iosevka Nerd Font";
         isDark = true;
       };
     };
-
     userData = lib.mkOption {
       default = {
         username = "vellu";
         fullname = "Vellu";
-        nixosVersion = "25.05";
+        nixosVersion = "25.11";
       };
     };
   };
 
   config = {
     system.stateVersion = config.vellu.userData.nixosVersion;
+
+    stylix = {
+      enable = true;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+      polarity = "dark";
+      opacity.terminal = 0.9;
+
+      fonts = {
+        monospace = {
+          package = pkgs.nerd-fonts.iosevka;
+          name = config.vellu.theming.font;
+        };
+
+        sansSerif = config.stylix.fonts.monospace;
+        serif = config.stylix.fonts.monospace;
+        emoji = config.stylix.fonts.monospace;
+
+        sizes.terminal = 17;
+      };
+    };
 
     boot.loader = {
       efi = {
@@ -73,12 +93,12 @@
         wants = [ "graphical-session.target" ];
         after = [ "graphical-session.target" ];
         serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
-          };
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
     };
 

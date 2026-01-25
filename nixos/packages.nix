@@ -9,8 +9,6 @@
 
     # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
-      inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
-      p7zip
       acpi
       alacritty
       alsa-utils
@@ -31,18 +29,19 @@
       gnome-secrets
       grim
       htop
+      inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
       killall
       libqalculate
       lm_sensors
+      mako
       moor
       mpv
       neovim
-      nil # Nix language lsp
       nixpkgs-fmt # Nix language formatter
       ntfs3g
-      mako
       obsidian
       openjdk8
+      p7zip
       pcmanfm
       polkit
       polkit_gnome
@@ -56,6 +55,7 @@
       tokei
       transmission_4-gtk
       unzip
+      uv
       vesktop
       via
       virtiofsd

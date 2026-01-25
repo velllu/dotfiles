@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, stylix, lib, pkgs, ... }:
 
 let
   modifier = "Mod4";
@@ -12,12 +12,12 @@ in
         checkConfig = false; # TODO: Remove this when it gets fixed
 
         config = {
-          bars = []; # No sway bar
+          bars = [ ]; # No sway bar
 
           keybindings = {
             "${modifier}+Shift+Alt+q" = "swaymsg exit";
             "${modifier}+q" = "kill";
-            
+
             # Window states
             "${modifier}+t" = "floating disable";
             "${modifier}+Shift+t" = "floating enable";
@@ -66,7 +66,7 @@ in
             "${modifier}+d" = "exec rofi -show drun";
             "${modifier}+p" = "exec ~/.config/scripts/power_menu.sh";
             "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
-            
+
             "${modifier}+o" = "layout toggle split"; # Rotate
           };
 
@@ -78,28 +78,16 @@ in
           startup = [
             { command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper"; always = true; }
             { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
-
-            # This is an awful solution, but quickshell seems not to work with symlinks,
-            # so I must delete home-manager generated symlinks and replace them as actual
-            # files, only then can I start quickshell
-            { command = "rm -rf ~/.config/qs && mkdir ~/.config/qs && cp ~/.config/quickshell/* ~/.config/qs/ && rm -rf ~/.config/quickshell/* && mv ~/.config/qs/* ~/.config/quickshell && qs -d -n"; always = true; }
-
+            { command = "qs"; always = true; }
             { command = "emote"; }
             { command = "corectrl"; }
           ];
 
-          fonts = {
-            names = [ "${config.vellu.theming.font}" ];
-            size = 9.0;
-          };
-
+          # Make the title bar colors more vibrant then a standard black & white
           colors = {
             focused = {
-              background = "#${config.vellu.theming.accent}";
-              border = "#${config.vellu.theming.accent}";
-              childBorder = "#${config.vellu.theming.accent}";
-              indicator = "#${config.vellu.theming.accent}";
-              text = "#${config.vellu.theming.colorScheme.palette.base00}";
+              background = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
+              text = lib.mkForce config.lib.stylix.colors.withHashtag.base00;
             };
           };
 
