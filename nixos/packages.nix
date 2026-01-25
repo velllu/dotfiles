@@ -44,6 +44,7 @@
       obsidian
       openjdk8
       pcmanfm
+      polkit
       polkit_gnome
       polybar
       ripgrep
