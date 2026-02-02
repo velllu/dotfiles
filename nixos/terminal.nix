@@ -20,11 +20,11 @@
     programs.fish = {
       enable = true;
 
-      shellInit = ''
-        fastfetch -l nixos_small
+      # Load `startup.fish` and also make it so text is always high contrast regardless
+      # of the theme
+      shellInit = (builtins.readFile ../fish/startup.fish) + ''
 
-        set -U fish_greeting # disable greeting
-        fish_vi_key_bindings
+        set -g fish_color_param ${config.lib.stylix.colors.base05}
       '';
 
       shellAliases = {

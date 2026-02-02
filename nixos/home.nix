@@ -22,9 +22,22 @@
 
       qt.enable = true;
 
+      services.mako = {
+        enable = true;
+        settings = {
+          default-timeout = 5000; # 5s for a notification to disappear
+          ignore-timeout = true;
+          border-radius = config.vellu.theming.borderRadius;
+        };
+      };
+
+      programs = {
+        rofi.enable = true;
+      };
+
       # Config files
       xdg.configFile."scripts".source = ../scripts;
-      xdg.configFile."wallpaper".source = ../wallpapers/peso.png;
+      xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
 
       # Bar config
       imports = [ ../quickshell/quickshell.nix ];

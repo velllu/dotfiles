@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   config = {
@@ -12,6 +12,13 @@
           };
 
           opacity = 0.9;
+        };
+
+        colors = with config.lib.stylix.colors.withHashtag; {
+          cursor = {
+            text = lib.mkForce base05;
+            cursor = lib.mkForce base05;
+          };
         };
       };
     };

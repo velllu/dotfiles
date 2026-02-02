@@ -1,4 +1,4 @@
-CHOICE=$(printf "Power off\nReboot\nQuit BSPWM" | rofi -dmenu)
+CHOICE=$(printf "Power off\nReboot\nQuit Sway" | rofi -dmenu)
 
 case "$CHOICE" in
   "Power off")
@@ -7,7 +7,7 @@ case "$CHOICE" in
   "Reboot")
     reboot
     ;;
-  "Quit BSPWM")
-    bspc quit
+  "Quit Sway")
+    swaymsg exit
     ;;
 esac

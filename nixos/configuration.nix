@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
 
-    ./sound.nix
     ./home.nix
     ./env.nix
     ./packages.nix
@@ -14,6 +13,7 @@
     # TODO: Implement VSCODE too
 
     ../alacritty/alacritty.nix
+    ../discord/discord.nix
     ../firefox/firefox.nix
     ../helix/helix.nix
     ../sway/sway.nix
@@ -23,9 +23,10 @@
     theming = lib.mkOption {
       default = {
         font = "Iosevka Nerd Font";
-        isDark = true;
+        borderRadius = 10;
       };
     };
+
     userData = lib.mkOption {
       default = {
         username = "vellu";
@@ -40,7 +41,7 @@
 
     stylix = {
       enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       polarity = "dark";
       opacity.terminal = 0.9;
 
@@ -80,25 +81,30 @@
       };
     };
 
-    systemd.user.extraConfig = ''
-      DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
-    '';
+    security = {
+      polkit.enable = true;
+      rtkit.enable = true;
+    };
 
-    # Polkit enabling
-    security.polkit.enable = true;
     systemd = {
-      user.services.polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
+      user = {
+        services.polkit-gnome-authentication-agent-1 = {
+          description = "polkit-gnome-authentication-agent-1";
+          wantedBy = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+          };
         };
+
+        extraConfig = ''
+          DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+        '';
       };
     };
 
@@ -126,6 +132,7 @@
     };
 
     nixpkgs.config.allowUnfree = true;
+    nix.package = pkgs.lixPackageSets.stable.lix;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     virtualisation = {
@@ -177,11 +184,18 @@
       xserver.videoDrivers = [ "modesetting" ];
       udev.extraRules = builtins.readFile ../udev-rules;
 
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+      };
+
       # This must be set for my raspberry pi pico to work
       udisks2.enable = true;
     };
-
-    security.rtkit.enable = true;
 
     # These make sure that the channel used by `nix-shell` is the same as this flake
     systemd.tmpfiles.rules = [

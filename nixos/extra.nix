@@ -5,8 +5,7 @@
     environment.systemPackages = with pkgs; [
       blender
       gimp
-      godot_4
-      jetbrains.idea-community
+      jetbrains.idea-oss
       kdePackages.kdenlive
       prismlauncher
       tor-browser

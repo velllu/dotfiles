@@ -78,17 +78,25 @@ in
           startup = [
             { command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper"; always = true; }
             { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
-            { command = "qs"; always = true; }
+            { command = "qs"; }
             { command = "emote"; }
             { command = "corectrl"; }
           ];
 
           # Make the title bar colors more vibrant then a standard black & white
-          colors = {
+          colors = with config.lib.stylix.colors.withHashtag; {
             focused = {
-              background = lib.mkForce config.lib.stylix.colors.withHashtag.base0D;
-              text = lib.mkForce config.lib.stylix.colors.withHashtag.base00;
+              background = lib.mkForce base0D;
+              text = lib.mkForce base00;
             };
+
+            # Since I use autotiling, I don't need to see where the next window is gonna
+            # get placed, so I can just remove the little high contrast useless hint
+            focused = { indicator = lib.mkForce base0D; };
+            focusedInactive = { indicator = lib.mkForce base01; };
+            unfocused = { indicator = lib.mkForce base01; };
+            urgent = { indicator = lib.mkForce base01; };
+            placeholder = { indicator = lib.mkForce base01; };
           };
 
           floating.modifier = "${modifier}";
@@ -98,7 +106,7 @@ in
         extraConfigEarly = ''
           blur enable
           shadows enable
-          corner_radius 10
+          corner_radius ${builtins.toString config.vellu.theming.borderRadius}
         '';
       };
     };

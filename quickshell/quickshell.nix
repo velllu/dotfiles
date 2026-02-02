@@ -17,17 +17,22 @@ in
       }
     '';
 
-    xdg.configFile."quickshell/Colorscheme.qml".text = ''
+    xdg.configFile."quickshell/Colorscheme.qml".text = with config.lib.stylix.colors.withHashtag; ''
       pragma Singleton
       import QtQuick
 
       QtObject {
-          property string background: "${config.lib.stylix.colors.withHashtag.base00}"
-          property string foreground: "${config.lib.stylix.colors.withHashtag.base06}"
-          property string workspaceColor: "${config.lib.stylix.colors.withHashtag.base08}"
-          property string februaryColor: "${config.lib.stylix.colors.withHashtag.base0A}"
-          property string dateColor: "${config.lib.stylix.colors.withHashtag.base0D}"
-          property string resourcesColor: "${config.lib.stylix.colors.withHashtag.base0C}"
+          property string background: "${base00}"
+          property string foreground: "${base06}"
+
+          property string workspaceColor: "${base08}"
+          property string februaryColor: "${base09}"
+          property string trayColor: "${base0A}"
+
+          property string dateColor: "${base0E}"
+          property string resourcesColor: "${base0D}"
+          property string volumeColor: "${base0C}"
+          property string volumeDarkColor: "${base03}"
       }
     '';
   };

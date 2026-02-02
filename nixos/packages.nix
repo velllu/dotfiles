@@ -2,12 +2,6 @@
 
 {
   config = {
-    nixpkgs.config.permittedInsecurePackages = [
-      "python-2.7.18.6"
-      "electron-25.9.0"
-    ];
-
-    # These are the core packages, for the extras look into the `packages-extra.nix` file
     environment.systemPackages = with pkgs; [
       acpi
       alacritty
@@ -21,7 +15,6 @@
       fd
       ffmpeg
       firefox
-      flameshot
       gcc
       git
       git-lfs
@@ -37,9 +30,8 @@
       moor
       mpv
       neovim
-      nixpkgs-fmt # Nix language formatter
+      nixpkgs-fmt
       ntfs3g
-      obsidian
       openjdk8
       p7zip
       pcmanfm
@@ -64,7 +56,6 @@
       wget
       wineWowPackages.full
       wl-clipboard
-      xorg.xkill
       yt-dlp
     ];
 

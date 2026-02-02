@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     stylix = {
       url = "github:nix-community/stylix/release-25.11";
@@ -19,17 +18,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs:
+  outputs = { self, nixpkgs, ... } @ inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
 
       # Template
       mkSystem = modules: nixpkgs.lib.nixosSystem {
@@ -44,7 +36,6 @@
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
             };
-            nixpkgs.overlays = [ overlay-unstable ];
           }
         ] ++ modules; # Append host-specific modules
       };
