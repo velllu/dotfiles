@@ -32,6 +32,7 @@
       neovim
       nixpkgs-fmt
       ntfs3g
+      okular
       openjdk8
       p7zip
       pcmanfm
