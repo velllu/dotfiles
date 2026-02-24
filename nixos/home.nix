@@ -33,6 +33,10 @@
 
       programs = {
         rofi.enable = true;
+
+        # Disable cache generation for man, because the fish shell seems to need this for
+        # some auto-completion but it makes the whole build very slow
+        man.generateCaches = false;
       };
 
       # Config files

@@ -23,6 +23,7 @@
       grim
       htop
       inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
+      kdePackages.okular
       killall
       libqalculate
       lm_sensors
@@ -32,7 +33,6 @@
       neovim
       nixpkgs-fmt
       ntfs3g
-      okular
       openjdk8
       p7zip
       pcmanfm
