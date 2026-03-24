@@ -8,6 +8,7 @@
       godot
       jetbrains.idea-oss
       kdePackages.kdenlive
+      kicad
       prismlauncher
       tor-browser
     ];
