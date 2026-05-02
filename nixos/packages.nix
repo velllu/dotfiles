@@ -15,6 +15,7 @@
       fd
       ffmpeg
       firefox
+      foliate
       gcc
       git
       git-lfs

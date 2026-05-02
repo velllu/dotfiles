@@ -7,7 +7,7 @@
       description = config.vellu.userData.fullname;
 
       # `dialout` is for the raspberry pi pico
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" "dialout" ];
+      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" "dialout" "video" "render" "input" ];
     };
 
     # When running in a vm set a default password
@@ -21,6 +21,14 @@
       home.stateVersion = config.vellu.userData.nixosVersion;
 
       qt.enable = true;
+
+      home.pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors-white";
+        size = 48;
+      };
 
       services.mako = {
         enable = true;
