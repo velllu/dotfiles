@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   config = {
@@ -6,12 +6,9 @@
       acpi
       alacritty
       alsa-utils
-      bat
-      bat-extras.batman
-      distrobox
-      emote
-      eza
-      fastfetch
+      nixd
+      nixfmt
+      nil
       fd
       ffmpeg
       firefox
@@ -23,13 +20,11 @@
       gnome-secrets
       grim
       htop
-      inputs.quickshell.packages.${stdenv.hostPlatform.system}.default
       kdePackages.okular
       killall
       libqalculate
       lm_sensors
       mako
-      moor
       mpv
       neovim
       nixpkgs-fmt
@@ -39,22 +34,13 @@
       pcmanfm
       polkit
       polkit_gnome
-      polybar
-      ripgrep
       rofi
-      simplescreenrecorder
       slurp
       sxhkd
       tealdeer
       tokei
       transmission_4-gtk
       unzip
-      uv
-      vesktop
-      via
-      virtiofsd
-      virt-manager
-      vscode
       wget
       wineWowPackages.full
       wl-clipboard

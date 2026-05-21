@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   config = {
@@ -7,7 +7,18 @@
       description = config.vellu.userData.fullname;
 
       # `dialout` is for the raspberry pi pico
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" "corectrl" "docker" "plugdev" "dialout" "video" "render" "input" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "libvirtd"
+        "corectrl"
+        "docker"
+        "plugdev"
+        "dialout"
+        "video"
+        "render"
+        "input"
+      ];
     };
 
     # When running in a vm set a default password
@@ -47,12 +58,7 @@
         man.generateCaches = false;
       };
 
-      # Config files
-      xdg.configFile."scripts".source = ../scripts;
       xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
-
-      # Bar config
-      imports = [ ../quickshell/quickshell.nix ];
 
       # GTK theme
       gtk = {

@@ -1,10 +1,42 @@
-{ config, stylix, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+with lib;
 let
+  cfg = config.modules.swayfx;
   modifier = "Mod4";
+  powerMenu = pkgs.writeShellScriptBin "power_menu.sh" ''
+    CHOICE=$(printf "Power off\nReboot\nQuit Sway" | rofi -dmenu)
+
+    case "$CHOICE" in
+      "Power off")
+        poweroff
+        ;;
+      "Reboot")
+        reboot
+        ;;
+      "Quit Sway")
+        swaymsg exit
+        ;;
+    esac
+  '';
 in
 {
-  config = {
+  options.modules.swayfx = {
+    enable = mkEnableOption "Enable swayfx compositor";
+  };
+
+  config = mkIf cfg.enable {
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      package = pkgs.swayfx;
+    };
+
     home-manager.users."${config.vellu.userData.username}" = {
       wayland.windowManager.sway = {
         enable = true;
@@ -64,7 +96,7 @@ in
             "${modifier}+b" = "exec firefox";
             "${modifier}+Return" = "exec alacritty";
             "${modifier}+d" = "exec rofi -show drun";
-            "${modifier}+p" = "exec ~/.config/scripts/power_menu.sh";
+            "${modifier}+p" = "exec ${powerMenu}/bin/power_menu.sh";
             "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
 
             "${modifier}+o" = "layout toggle split"; # Rotate
@@ -76,10 +108,15 @@ in
           };
 
           startup = [
-            { command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper"; always = true; }
-            { command = "${pkgs.autotiling}/bin/autotiling"; always = true; }
+            {
+              command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper";
+              always = true;
+            }
+            {
+              command = "${pkgs.autotiling}/bin/autotiling";
+              always = true;
+            }
             { command = "qs"; }
-            { command = "emote"; }
             { command = "corectrl"; }
           ];
 
@@ -92,11 +129,26 @@ in
 
             # Since I use autotiling, I don't need to see where the next window is gonna
             # get placed, so I can just remove the little high contrast useless hint
-            focused = { indicator = lib.mkForce base0D; };
-            focusedInactive = { indicator = lib.mkForce base01; };
-            unfocused = { indicator = lib.mkForce base01; };
-            urgent = { indicator = lib.mkForce base01; };
-            placeholder = { indicator = lib.mkForce base01; };
+
+            focused = {
+              indicator = lib.mkForce base0D;
+            };
+
+            focusedInactive = {
+              indicator = lib.mkForce base01;
+            };
+
+            unfocused = {
+              indicator = lib.mkForce base01;
+            };
+
+            urgent = {
+              indicator = lib.mkForce base01;
+            };
+
+            placeholder = {
+              indicator = lib.mkForce base01;
+            };
           };
 
           floating.modifier = "${modifier}";

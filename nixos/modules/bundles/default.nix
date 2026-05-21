@@ -1,0 +1,9 @@
+{ ... }:
+
+{
+  imports = [
+    ./coding
+    ./extra
+    ./graphics
+  ];
+}

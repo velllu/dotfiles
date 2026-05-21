@@ -1,22 +1,17 @@
-{ lib, config, inputs, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+
+# This is used for the basic stuff that most NixOS configs have, this is basically
+# boilerplate.
 
 {
   imports = [
-    ./hardware-configuration.nix
-
     ./home.nix
-    ./env.nix
     ./packages.nix
-    ./terminal.nix
-    ./wm.nix
-
-    # TODO: Implement VSCODE too
-
-    ../alacritty/alacritty.nix
-    ../discord/discord.nix
-    ../firefox/firefox.nix
-    ../helix/helix.nix
-    ../sway/sway.nix
   ];
 
   options.vellu = {
@@ -32,6 +27,7 @@
         username = "vellu";
         fullname = "Vellu";
         nixosVersion = "25.11";
+        dotfilesPath = "/home/vellu/Projects/dotfiles";
       };
     };
   };
@@ -57,6 +53,15 @@
 
         sizes.terminal = 17;
       };
+    };
+
+    environment.sessionVariables = {
+      EDITOR = "zeditor";
+      EZA_ICON_SPACING = "2";
+      GIT_ASKPASS = "";
+
+      # Remaps the caps lock key to the compose key to be able to type accented letters
+      XKB_DEFAULT_OPTIONS = "compose:caps";
     };
 
     boot.loader = {
@@ -132,24 +137,21 @@
     };
 
     nixpkgs.config.allowUnfree = true;
-    nix.package = pkgs.lixPackageSets.stable.lix;
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    virtualisation = {
-      podman = {
-        enable = true;
-        defaultNetwork.settings.dns_enabled = true;
+    nix = {
+      package = pkgs.lixPackageSets.stable.lix;
+
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      registry = {
+        dotfiles.to = {
+          type = "path";
+          path = config.vellu.userData.dotfilesPath;
+        };
       };
-
-      # The specs when using `nixos-rebuild build-vm`, these are hard coded
-      vmVariant.virtualisation = {
-        memorySize = 1024 * 4;
-        cores = 6;
-      };
-
-      docker.enable = true;
-      libvirtd.enable = true;
-      spiceUSBRedirection.enable = true;
     };
 
     hardware = {
@@ -182,9 +184,14 @@
     services = {
       flatpak.enable = true;
       xserver.videoDrivers = [ "modesetting" ];
-      udev.extraRules = builtins.readFile ../udev-rules;
 
       pulseaudio.enable = false;
+
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+
       pipewire = {
         enable = true;
         alsa.enable = true;
@@ -193,7 +200,8 @@
         jack.enable = true;
       };
 
-      # This must be set for my raspberry pi pico to work
+      # These must be set for my raspberry pi pico to work
+      udev.extraRules = builtins.readFile ../udev-rules;
       udisks2.enable = true;
     };
 

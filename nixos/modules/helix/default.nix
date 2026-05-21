@@ -1,7 +1,19 @@
-{ config, ... }:
-
 {
-  config = {
+  config,
+  lib,
+  ...
+}:
+
+with lib;
+let
+  cfg = config.modules.helix;
+in
+{
+  options.modules.helix = {
+    enable = mkEnableOption "Enable helix editor";
+  };
+
+  config = mkIf cfg.enable {
     home-manager.users."${config.vellu.userData.username}" = {
       programs.helix.enable = true;
 
@@ -17,7 +29,7 @@
           "{" = "goto_prev_paragraph";
           "}" = "goto_next_paragraph";
           "G" = "goto_file_end";
-          "esc" = "collapse_selection"; # unselect
+          "esc" = "collapse_selection";
         };
 
         editor.cursor-shape = {
@@ -25,10 +37,6 @@
           normal = "block";
           select = "underline";
         };
-      };
-
-      programs.helix.languages = {
-        language = [{ name = "python"; language-servers = [ "pyright" ]; }];
       };
     };
   };

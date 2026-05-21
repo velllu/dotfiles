@@ -18,42 +18,55 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs =
+    { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
 
       # Template
-      mkSystem = modules: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs outputs; };
-        modules = [
-          inputs.stylix.nixosModules.stylix
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-            };
-          }
-        ] ++ modules; # Append host-specific modules
-      };
+      mkSystem =
+        modules:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit self inputs outputs; };
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ]
+          ++ modules; # Append host-specific modules
+        };
     in
     {
       nixosConfigurations = {
-        # Fully featured system
-        # Runnable as the default
+        # Main desktop configuration
         nixos = mkSystem [
-          ./nixos/configuration.nix
-          ./nixos/extra.nix
+          ./nixos/hosts/desktop
         ];
+      };
 
-        # Minimal system with heavy applications left out
-        # Runnable with `sudo nixos-rebuild switch --flake .#minimal`
-        minimal = mkSystem [
-          ./nixos/configuration.nix
-        ];
+      templates = {
+        python = {
+          path = ./nixos/templates/python;
+          description = "Python development flake";
+        };
+
+        rust = {
+          path = ./nixos/templates/rust;
+          description = "Rust development flake";
+        };
+
+        javascript = {
+          path = ./nixos/templates/javascript;
+          description = "JavaScript development flake";
+        };
       };
     };
 }
