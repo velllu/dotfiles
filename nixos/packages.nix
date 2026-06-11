@@ -6,9 +6,6 @@
       acpi
       alacritty
       alsa-utils
-      nixd
-      nixfmt
-      nil
       fd
       ffmpeg
       firefox
@@ -27,6 +24,9 @@
       mako
       mpv
       neovim
+      nil
+      nixd
+      nixfmt
       nixpkgs-fmt
       ntfs3g
       openjdk8

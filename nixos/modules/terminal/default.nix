@@ -22,6 +22,7 @@ in
       fastfetch
       moor
       ripgrep
+      uutils-coreutils
     ];
 
     home-manager.users."${config.vellu.userData.username}" = {
@@ -59,10 +60,12 @@ in
       shellAliases = {
         cat = "bat --style plain -P";
         clear = "clear && fastfetch -l nixos_small";
+        cp = "uutils-cp --progress";
         grep = "rg";
         less = "moor";
         ls = "eza --long --icons --git --no-permissions --sort type";
         man = "batman";
+        rm = "uutils-rm --progress";
         s = "ls";
         switc = "sudo nixos-rebuild switch --flake path:${config.vellu.userData.dotfilesPath}";
         template = "echo 'use flake .' > .envrc; nix flake init -t";
