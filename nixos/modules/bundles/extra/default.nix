@@ -18,7 +18,6 @@ in
     environment.systemPackages = with pkgs; [
       kicad
       tor-browser
-      prismlauncher
     ];
   };
 }

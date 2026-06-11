@@ -164,7 +164,6 @@
     };
 
     programs = {
-      steam.enable = true;
       corectrl.enable = true;
       dconf.enable = true;
       git.lfs.enable = true; # Enable large file storage for git

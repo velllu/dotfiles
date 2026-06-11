@@ -20,6 +20,7 @@
       bundles = {
         coding.enable = true;
         extra.enable = true;
+        gaming.enable = true;
         graphics.enable = true;
       };
     };
