@@ -26,7 +26,7 @@
       default = {
         username = "vellu";
         fullname = "Vellu";
-        nixosVersion = "25.11";
+        nixosVersion = "26.05";
         dotfilesPath = "/home/vellu/Projects/dotfiles";
       };
     };
@@ -53,6 +53,9 @@
 
         sizes.terminal = 17;
       };
+
+      # This prevents a long recompile time everytime I change the colors
+      targets.gtksourceview.enable = false;
     };
 
     environment.sessionVariables = {

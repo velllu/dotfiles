@@ -19,7 +19,8 @@ in
         enable = true;
 
         profiles = {
-          default = { };
+          default = {
+          };
         };
       };
 

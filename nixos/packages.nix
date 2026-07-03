@@ -42,7 +42,7 @@
       transmission_4-gtk
       unzip
       wget
-      wineWowPackages.full
+      wineWow64Packages.full
       wl-clipboard
       yt-dlp
     ];
