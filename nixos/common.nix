@@ -18,6 +18,7 @@
     theming = lib.mkOption {
       default = {
         font = "Iosevka Nerd Font";
+        wallpaper = ../wallpapers/flowers.jpg;
         borderRadius = 10;
       };
     };

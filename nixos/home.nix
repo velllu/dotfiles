@@ -58,8 +58,6 @@
         man.generateCaches = false;
       };
 
-      xdg.configFile."wallpaper".source = ../wallpapers/flowers.jpg;
-
       # GTK theme
       gtk = {
         enable = true;

@@ -19,7 +19,11 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
@@ -29,7 +33,13 @@
         modules:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit self inputs outputs; };
+          specialArgs = {
+            inherit
+              self
+              inputs
+              outputs
+              ;
+          };
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
@@ -37,6 +47,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "bak";
                 extraSpecialArgs = { inherit inputs; };
               };
             }
@@ -49,6 +60,10 @@
         # Main desktop configuration
         nixos = mkSystem [
           ./nixos/hosts/desktop
+        ];
+
+        laptop = mkSystem [
+          ./nixos/hosts/laptop
         ];
       };
 

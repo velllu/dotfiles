@@ -9,6 +9,8 @@ with lib;
 let
   cfg = config.modules.swayfx;
   modifier = "Mod4";
+
+  # Menu for toggling power modes
   powerMenu = pkgs.writeShellScriptBin "power_menu.sh" ''
     CHOICE=$(printf "Power off\nReboot\nQuit Sway" | rofi -dmenu)
 
@@ -109,7 +111,7 @@ in
 
           startup = [
             {
-              command = "${pkgs.swaybg}/bin/swaybg --image ~/.config/wallpaper";
+              command = "${pkgs.swaybg}/bin/swaybg --image ${config.vellu.theming.wallpaper}";
               always = true;
             }
             {

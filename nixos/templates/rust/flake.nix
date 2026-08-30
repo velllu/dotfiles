@@ -34,16 +34,16 @@
           pkgs.libxkbcommon
           pkgs.libGL
           pkgs.wayland
-          pkgs.xorg.libXcursor
-          pkgs.xorg.libXrandr
-          pkgs.xorg.libXi
-          pkgs.xorg.libX11
+          pkgs.libXcursor
+          pkgs.libXrandr
+          pkgs.libXi
+          pkgs.libX11
         ];
 
         # Adding those packages to PATH
         LD_LIBRARY_PATH = builtins.concatStringsSep ":" [
-          "${pkgs.xorg.libX11}/lib"
-          "${pkgs.xorg.libXi}/lib"
+          "${pkgs.libX11}/lib"
+          "${pkgs.libXi}/lib"
           "${pkgs.libGL}/lib"
         ];
       };
