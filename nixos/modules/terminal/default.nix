@@ -25,26 +25,8 @@ in
       uutils-coreutils
     ];
 
-    home-manager.users."${config.vellu.userData.username}" = {
-      programs.alacritty.enable = true;
-      programs.alacritty.settings = {
-        window = {
-          padding = {
-            x = 15;
-            y = 15;
-          };
-
-          opacity = 0.9;
-        };
-
-        colors = with config.lib.stylix.colors.withHashtag; {
-          cursor = {
-            text = lib.mkForce base05;
-            cursor = lib.mkForce base05;
-          };
-        };
-      };
-    };
+    # Has hints when typing the password, which offer a better feedback
+    security.sudo-rs.enable = true;
 
     programs.fish = {
       enable = true;
@@ -75,6 +57,7 @@ in
 
     programs.starship = {
       enable = true;
+
       settings = {
         character = {
           success_symbol = "[INS ❯](green)";
@@ -83,6 +66,52 @@ in
           vimcmd_replace_one_symbol = "[RLC ❯](cyan)";
           vimcmd_replace_symbol = "[RLC ❯](bright-cyan)";
           vimcmd_visual_symbol = "[VIS ❯](yellow)";
+        };
+      };
+    };
+
+    home-manager.users."${config.vellu.userData.username}" = {
+      programs.alacritty = {
+        enable = true;
+
+        settings = {
+          window = {
+            padding = {
+              x = 15;
+              y = 15;
+            };
+
+            opacity = 0.9;
+          };
+
+          colors = with config.lib.stylix.colors.withHashtag; {
+            cursor = {
+              text = lib.mkForce base05;
+              cursor = lib.mkForce base05;
+            };
+          };
+        };
+      };
+
+      programs.fastfetch = {
+        enable = true;
+
+        settings = {
+          logo = {
+            source = "nixos_small";
+          };
+
+          modules = [
+            "title"
+            "separator"
+            "uptime"
+            "os"
+            "wm"
+            "cpu"
+            "gpu"
+            "disk"
+            "battery"
+          ];
         };
       };
     };
