@@ -6,6 +6,7 @@
     ./discord
     ./firefox
     ./helix
+    ./omp
     ./quickshell
     ./servers
     ./swayfx

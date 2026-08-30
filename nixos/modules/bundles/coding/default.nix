@@ -17,7 +17,6 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       godot
-      jetbrains.idea-oss
       vscode
       zed-editor
     ];
