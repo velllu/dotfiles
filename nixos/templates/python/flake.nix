@@ -17,7 +17,9 @@
     {
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
-          python313
+          (pkgs.python313.withPackages (ps: [
+            # Install python packages here (ie. ps.evdev)
+          ]))
           pyright
         ];
       };

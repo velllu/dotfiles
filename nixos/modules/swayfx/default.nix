@@ -125,15 +125,11 @@ in
           # Make the title bar colors more vibrant then a standard black & white
           colors = with config.lib.stylix.colors.withHashtag; {
             focused = {
-              background = lib.mkForce base0D;
               text = lib.mkForce base00;
-            };
-
-            # Since I use autotiling, I don't need to see where the next window is gonna
-            # get placed, so I can just remove the little high contrast useless hint
-
-            focused = {
-              indicator = lib.mkForce base0D;
+              border = lib.mkForce config.vellu.theming.accentColor;
+              background = lib.mkForce config.vellu.theming.accentColor;
+              indicator = lib.mkForce config.vellu.theming.accentColor;
+              childBorder = lib.mkForce config.vellu.theming.accentColor;
             };
 
             focusedInactive = {

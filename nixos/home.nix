@@ -64,9 +64,18 @@
 
         iconTheme = {
           name = "Papirus-Dark";
-          package = pkgs.papirus-icon-theme;
+          package = (
+            pkgs.papirus-icon-theme.override {
+              color = "${config.vellu.theming.accentColorName}";
+            }
+          );
         };
       };
+
+      stylix.targets.gtk.extraCss = ''
+        @define-color accent_color #${config.vellu.theming.accentColor};
+        @define-color accent_bg_color #${config.vellu.theming.accentColor};
+      '';
     };
   };
 }

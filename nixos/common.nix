@@ -16,10 +16,12 @@
 
   options.vellu = {
     theming = lib.mkOption {
-      default = {
+      default = rec {
         font = "Iosevka Nerd Font";
-        wallpaper = ../wallpapers/flowers.jpg;
+        wallpaper = ../wallpapers/eggroom.jpg;
         borderRadius = 10;
+        accentColorName = "red";
+        accentColor = config.lib.stylix.colors."${accentColorName}";
       };
     };
 
