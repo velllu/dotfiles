@@ -12,7 +12,6 @@
         "wheel"
         "libvirtd"
         "corectrl"
-        "docker"
         "plugdev"
         "dialout"
         "video"

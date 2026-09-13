@@ -27,7 +27,6 @@ in
         cores = 6;
       };
 
-      docker.enable = true;
       libvirtd.enable = true;
       spiceUSBRedirection.enable = true;
     };

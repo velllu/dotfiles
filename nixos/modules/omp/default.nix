@@ -9,7 +9,7 @@ with lib;
 let
   cfg = config.modules.omp;
 
-  ompFiles = builtins.fetchGit {
+  ompFiles = fetchGit {
     url = "https://github.com/can1357/oh-my-pi.git";
     rev = "4854db856c20e000a3760d793c56d78065dcf83f";
   };
@@ -23,10 +23,8 @@ in
 
   config = mkIf cfg.enable {
     virtualisation = {
-      docker.enable = true;
-
       oci-containers = {
-        backend = "docker";
+        backend = "podman";
         containers.omp = {
           image = "oh-my-pi/pi:local";
           autoStart = true;
@@ -34,14 +32,14 @@ in
       };
     };
 
-    systemd.services."docker-omp".preStart = ''
-      ${pkgs.docker}/bin/docker image inspect '${imageName}' >/dev/null 2>&1 || \
-        ${pkgs.docker}/bin/docker build --pull -t '${imageName}' ${ompFiles}
+    systemd.services."podman-omp".preStart = ''
+      ${pkgs.podman}/bin/podman image inspect '${imageName}' >/dev/null 2>&1 || \
+        ${pkgs.podman}/bin/podman build --pull -t '${imageName}' ${ompFiles}
     '';
 
     environment.systemPackages = [
       (pkgs.writeShellScriptBin "omp" ''
-        exec ${pkgs.docker}/bin/docker run --rm -it \
+        exec ${pkgs.podman}/bin/podman run --rm -it \
           --network host \
           -v omp-home:/root \
           -w /workspace \
@@ -50,7 +48,7 @@ in
       '')
 
       (pkgs.writeShellScriptBin "omp-project" ''
-        exec ${pkgs.docker}/bin/docker run --rm -it \
+        exec ${pkgs.podman}/bin/podman run --rm -it \
           --network host \
           -v omp-home:/root \
           -w /workspace \

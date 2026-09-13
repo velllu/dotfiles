@@ -156,7 +156,7 @@ in
         extraConfigEarly = ''
           blur enable
           shadows enable
-          corner_radius ${builtins.toString config.vellu.theming.borderRadius}
+          corner_radius ${toString config.vellu.theming.borderRadius}
         '';
       };
     };
