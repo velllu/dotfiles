@@ -1,8 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   config = {
     environment.systemPackages = with pkgs; [
+      pkgs-unstable.trilium-desktop
+
       acpi
       alacritty
       alsa-utils

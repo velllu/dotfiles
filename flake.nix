@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
@@ -22,11 +23,17 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       ...
     }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+
+      pkgs-unstable = import nixpkgs-unstable {
+        system = system;
+        config.allowUnfree = true;
+      };
 
       # Template
       mkSystem =
@@ -38,6 +45,7 @@
               self
               inputs
               outputs
+              pkgs-unstable
               ;
           };
           modules = [

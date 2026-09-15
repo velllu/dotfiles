@@ -24,6 +24,10 @@
         gaming.enable = true;
         graphics.enable = true;
       };
+
+      servers = {
+        trilium-server.enable = true;
+      };
     };
   };
 }
