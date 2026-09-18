@@ -14,6 +14,7 @@
       helix.enable = true;
       omp.enable = true;
       quickshell.enable = true;
+      raspberry-pico.enable = true;
       swayfx.enable = true;
       terminal.enable = true;
       virtualization.enable = true;

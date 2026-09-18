@@ -204,10 +204,6 @@
         pulse.enable = true;
         jack.enable = true;
       };
-
-      # These must be set for my raspberry pi pico to work
-      udev.extraRules = builtins.readFile ../udev-rules;
-      udisks2.enable = true;
     };
 
     # These make sure that the channel used by `nix-shell` is the same as this flake

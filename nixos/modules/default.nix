@@ -8,6 +8,7 @@
     ./helix
     ./omp
     ./quickshell
+    ./raspberry-pico
     ./servers
     ./swayfx
     ./terminal

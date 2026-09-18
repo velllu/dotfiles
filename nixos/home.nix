@@ -6,14 +6,12 @@
       isNormalUser = true;
       description = config.vellu.userData.fullname;
 
-      # `dialout` is for the raspberry pi pico
       extraGroups = [
         "networkmanager"
         "wheel"
         "libvirtd"
         "corectrl"
         "plugdev"
-        "dialout"
         "video"
         "render"
         "input"
