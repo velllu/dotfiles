@@ -48,7 +48,7 @@ let
 in
 {
   options.modules.terminal = {
-    enable = mkEnableOption "Enable fish & alacritty configurations";
+    enable = mkEnableOption "Enable fish & foot configurations";
   };
 
   config = mkIf cfg.enable {
@@ -61,6 +61,20 @@ in
       ripgrep
       uutils-coreutils
     ];
+
+    programs.foot = {
+      enable = true;
+
+      settings = {
+        main = {
+          pad = "15x15";
+          dpi-aware = "yes";
+          font = "monospace:size=18";
+        };
+
+        colors-dark.alpha = 0.8;
+      };
+    };
 
     environment.sessionVariables = {
       EZA_COLORS = "fi=${ezaColorCode}:di=1;${ezaColorCode}:ln=${ezaColorCode}:ex=${ezaColorCode}:da=${ezaColorCode}";
@@ -116,28 +130,6 @@ in
     };
 
     home-manager.users."${config.vellu.userData.username}" = {
-      programs.alacritty = {
-        enable = true;
-
-        settings = {
-          window = {
-            padding = {
-              x = 15;
-              y = 15;
-            };
-
-            opacity = 0.9;
-          };
-
-          colors = with config.lib.stylix.colors.withHashtag; {
-            cursor = {
-              text = lib.mkForce base05;
-              cursor = lib.mkForce base05;
-            };
-          };
-        };
-      };
-
       programs.fastfetch = {
         enable = true;
 

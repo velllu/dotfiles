@@ -96,7 +96,7 @@ in
 
             # Shortcuts
             "${modifier}+b" = "exec firefox";
-            "${modifier}+Return" = "exec alacritty";
+            "${modifier}+Return" = "exec foot";
             "${modifier}+d" = "exec rofi -show drun";
             "${modifier}+p" = "exec ${powerMenu}/bin/power_menu.sh";
             "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";

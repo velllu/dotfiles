@@ -10,7 +10,6 @@
       pkgs-unstable.trilium-desktop
 
       acpi
-      alacritty
       alsa-utils
       fd
       ffmpeg
