@@ -26,6 +26,12 @@ let
         ;;
     esac
   '';
+
+  # Freezes the screen before taking the screenshot
+  takeScreenshot = pkgs.writeShellScriptBin "take_screenshot.sh" ''
+    ${pkgs.wayfreeze}/bin/wayfreeze \
+      --after-freeze-cmd '${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | wl-copy; killall wayfreeze'
+  '';
 in
 {
   options.modules.swayfx = {
@@ -99,7 +105,7 @@ in
             "${modifier}+Return" = "exec foot";
             "${modifier}+d" = "exec rofi -show drun";
             "${modifier}+p" = "exec ${powerMenu}/bin/power_menu.sh";
-            "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
+            "${modifier}+Shift+s" = "exec ${takeScreenshot}/bin/take_screenshot.sh";
 
             "${modifier}+o" = "layout toggle split"; # Rotate
           };

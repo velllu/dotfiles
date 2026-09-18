@@ -20,7 +20,6 @@
       git-lfs
       gnome-font-viewer
       gnome-secrets
-      grim
       htop
       kdePackages.okular
       killall
@@ -40,7 +39,6 @@
       polkit
       polkit_gnome
       rofi
-      slurp
       sxhkd
       tealdeer
       tokei
