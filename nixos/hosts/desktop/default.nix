@@ -12,7 +12,6 @@
       discord.enable = true;
       firefox.enable = true;
       helix.enable = true;
-      omp.enable = true;
       quickshell.enable = true;
       raspberry-pico.enable = true;
       swayfx.enable = true;

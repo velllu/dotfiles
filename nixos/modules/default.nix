@@ -6,7 +6,6 @@
     ./discord
     ./firefox
     ./helix
-    ./omp
     ./quickshell
     ./raspberry-pico
     ./servers
