@@ -26,6 +26,7 @@
       };
 
       servers = {
+        open-webui.enable = true;
         trilium-server.enable = true;
       };
     };
