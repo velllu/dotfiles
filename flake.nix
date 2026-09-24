@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
@@ -24,6 +25,7 @@
       self,
       nixpkgs,
       nixpkgs-unstable,
+      llm-agents,
       ...
     }@inputs:
     let
@@ -46,6 +48,7 @@
               inputs
               outputs
               pkgs-unstable
+              llm-agents
               ;
           };
           modules = [

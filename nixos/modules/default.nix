@@ -6,6 +6,7 @@
     ./discord
     ./firefox
     ./helix
+    ./hermes-agent
     ./quickshell
     ./raspberry-pico
     ./servers
