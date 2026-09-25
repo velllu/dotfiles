@@ -9,10 +9,10 @@
 
   config = {
     modules = {
+      bar.enable = true;
       discord.enable = true;
       firefox.enable = true;
       helix.enable = true;
-      quickshell.enable = true;
       swayfx.enable = true;
       terminal.enable = true;
       virtualization.enable = false;

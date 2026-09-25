@@ -124,7 +124,7 @@ in
               command = "${pkgs.autotiling}/bin/autotiling";
               always = true;
             }
-            { command = "qs"; }
+            { command = "bar"; }
             { command = "corectrl"; }
           ];
 

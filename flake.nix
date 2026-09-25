@@ -14,10 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Custom flakes
+    bar.url = "path:nixos/flakes/bar";
   };
 
   outputs =
@@ -26,6 +24,7 @@
       nixpkgs,
       nixpkgs-unstable,
       llm-agents,
+      bar,
       ...
     }@inputs:
     let
@@ -52,6 +51,7 @@
               ;
           };
           modules = [
+            bar.nixosModules.default
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             {
