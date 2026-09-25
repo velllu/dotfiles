@@ -68,8 +68,8 @@ in
       settings = {
         main = {
           pad = "15x15";
-          dpi-aware = "yes";
-          font = "monospace:size=18";
+          dpi-aware = "no";
+          font = "monospace:size=15";
         };
 
         colors-dark.alpha = 0.8;
