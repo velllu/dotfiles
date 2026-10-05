@@ -5,6 +5,7 @@
     users.users."${config.vellu.userData.username}" = {
       isNormalUser = true;
       description = config.vellu.userData.fullname;
+      uid = 1000;
 
       extraGroups = [
         "networkmanager"

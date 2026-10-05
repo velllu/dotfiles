@@ -3,6 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    moonshine.url = "github:hgaiser/moonshine";
 
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
@@ -54,6 +55,7 @@
             bar.nixosModules.default
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
+            inputs.moonshine.nixosModules.default
             {
               home-manager = {
                 useGlobalPkgs = true;

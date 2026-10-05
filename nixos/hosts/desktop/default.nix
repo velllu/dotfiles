@@ -13,6 +13,8 @@
       discord.enable = true;
       firefox.enable = true;
       helix.enable = true;
+      hermes-agent.enable = false;
+      moonshine.enable = true;
       raspberry-pico.enable = true;
       swayfx.enable = true;
       terminal.enable = true;

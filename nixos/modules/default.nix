@@ -8,6 +8,7 @@
     ./firefox
     ./helix
     ./hermes-agent
+    ./moonshine
     ./raspberry-pico
     ./servers
     ./swayfx

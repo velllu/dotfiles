@@ -43,35 +43,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.clr
-      rocmPackages.rocminfo
-      rocmPackages.hipblas
-      rocmPackages.rocblas
-    ];
-  };
-
-  # Below here are my attempts to configure ROCm
-
-  systemd.tmpfiles.rules = [
-    "L+ /opt/rocm - - - - ${
-      pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          clr
-          hipblas
-          rocblas
-          clr.icd
-        ];
-      }
-    }"
-  ];
-
-  environment.variables = {
-    HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-  };
 }
