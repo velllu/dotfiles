@@ -2,12 +2,11 @@
   "nodes": {
     "bar": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "quickshell": "quickshell"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-JBGKEwkxQUuH/Z+53lEioVUgBrlaFHE9kCd/w16dPRY=",
+        "narHash": "sha256-DHNVYuOjg2pqY019gX1jKJ5pZJCMyU+yWgeAi9WFTfo=",
         "path": "nixos/flakes/bar",
         "type": "path"
       },
@@ -373,27 +372,6 @@
         "owner": "nix-community",
         "repo": "NUR",
         "type": "github"
-      }
-    },
-    "quickshell": {
-      "inputs": {
-        "nixpkgs": [
-          "bar",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790320527,
-        "narHash": "sha256-cJi62zzLYq0WRUAVqYEzn82CSoGIGFDDLFv0eJaK3Co=",
-        "ref": "refs/heads/master",
-        "rev": "4594680eb4ba89a69f6a830174028b6e3d14ccfa",
-        "revCount": 863,
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       }
     },
     "root": {

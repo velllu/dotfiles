@@ -9,7 +9,11 @@
 
   config = {
     modules = {
-      bar.enable = true;
+      bar = {
+        enable = true;
+        hasBattery = false;
+      };
+
       discord.enable = true;
       firefox.enable = true;
       helix.enable = true;

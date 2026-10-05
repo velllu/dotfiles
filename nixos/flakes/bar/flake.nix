@@ -3,18 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      quickshell,
       ...
     }:
     let
@@ -35,60 +29,73 @@
         lightBackground = "#313244";
       };
 
+      mkVirtualFile = fileName: fileContents: {
+        name = fileName;
+        path = pkgs.writeText fileName fileContents;
+      };
+
       mkConfigFolder =
-        font: colors:
+        font: colors: hasBattery:
         pkgs.linkFarm "quickshell-config" [
           {
             name = "shell.qml";
             path = ./shell.qml;
           }
-          {
-            name = "MyText.qml";
-            path = pkgs.writeText "MyText.qml" ''
-              import QtQuick
 
-              Text {
-                  font.family: "${font}"
-                  font.pixelSize: 17
-                  color: Colorscheme.foreground
-              }
-            '';
-          }
-          {
-            name = "Colorscheme.qml";
-            path = pkgs.writeText "Colorscheme.qml" ''
-              pragma Singleton
-              import QtQuick
+          (mkVirtualFile "MyText.qml" ''
+            import QtQuick
 
-              QtObject {
-                  property string background: "${colors.background}"
-                  property string foreground: "${colors.foreground}"
+            Text {
+                font.family: "${font}"
+                font.pixelSize: 17
+                color: Colorscheme.foreground
+            }
+          '')
 
-                  property string workspaceColor: "${colors.red}"
-                  property string februaryColor: "${colors.orange}"
-                  property string trayColor: "${colors.yellow}"
+          (mkVirtualFile "Colorscheme.qml" ''
+            pragma Singleton
+            import QtQuick
 
-                  property string dateColor: "${colors.purple}"
-                  property string resourcesColor: "${colors.blue}"
-                  property string volumeColor: "${colors.lightBlue}"
-                  property string volumeDarkColor: "${colors.lightBackground}"
-              }
-            '';
-          }
+            QtObject {
+                property string background: "${colors.background}"
+                property string foreground: "${colors.foreground}"
+
+                property string workspaceColor: "${colors.red}"
+                property string februaryColor: "${colors.orange}"
+                property string trayColor: "${colors.yellow}"
+
+                property string dateColor: "${colors.purple}"
+                property string resourcesColor: "${colors.blue}"
+                property string volumeColor: "${colors.lightBlue}"
+                property string volumeDarkColor: "${colors.lightBackground}"
+            }
+          '')
+
+          (mkVirtualFile "Settings.qml" ''
+            pragma Singleton
+            import QtQuick
+
+            QtObject {
+                property bool hasBattery: ${if hasBattery then "true" else "false"}
+            }
+          '')
         ];
 
       # QT_QPA_PLATFORMTHEME must be unset because it's qt5ct by default and that
       # makes quickshell not launch
       mkBarScript =
-        font: colors:
+        font: colors: hasBattery:
         pkgs.writeShellScriptBin "bar" ''
           unset QT_QPA_PLATFORMTHEME
-          exec ${quickshell.packages.${system}.default}/bin/quickshell \
-            --path "${mkConfigFolder font colors}" "$@"
+          exec ${pkgs.quickshell}/bin/quickshell \
+            --path "${mkConfigFolder font colors hasBattery}" "$@"
         '';
     in
     {
-      packages.${system}.default = mkBarScript defaultFont defaultColors;
+      packages.${system} = {
+        default = mkBarScript defaultFont defaultColors false;
+        hasBattery = mkBarScript defaultFont defaultColors true;
+      };
 
       apps.${system}.default = {
         type = "app";
@@ -117,11 +124,16 @@
               type = lib.types.attrsOf lib.types.str;
               default = defaultColors;
             };
+
+            hasBattery = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+            };
           };
 
           config = lib.mkIf cfg.enable {
             environment.systemPackages = [
-              (mkBarScript cfg.font cfg.colors)
+              (mkBarScript cfg.font cfg.colors cfg.hasBattery)
             ];
           };
         };

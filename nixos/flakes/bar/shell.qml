@@ -4,10 +4,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick // for Text
 import Quickshell // for PanelWindow
-import Quickshell.I3 
+import Quickshell.I3
 import Quickshell.Io
 import Quickshell.Services.Pipewire
-import Quickshell.Services.SystemTray 
+import Quickshell.Services.SystemTray
 
 PanelWindow {
     id: window
@@ -16,7 +16,7 @@ PanelWindow {
     property int standardPadding: 15
     property int workspaceNumber: 5
     property int padding_: 10
-    
+
     color: "transparent"
 
     anchors {
@@ -33,7 +33,7 @@ PanelWindow {
 
     implicitHeight: height
 
-    // The module template that is used for every bar widget 
+    // The module template that is used for every bar widget
     component Module: Column {
         property color underlineColor
         default property alias content: row_id.data
@@ -55,7 +55,7 @@ PanelWindow {
             color: underlineColor
         }
     }
-        
+
     // --- BAR ---
     Rectangle {
         anchors.fill: parent
@@ -99,7 +99,7 @@ PanelWindow {
 
                             if (!workspace) return ""
                             if (workspace.active) return ""
-                            
+
                             return ""
                         }
 
@@ -169,14 +169,14 @@ PanelWindow {
 
                 Row {
                     spacing: 5
-                    
+
                     Repeater {
                         model: SystemTray.items.values
 
                         Item {
                             width: 20
                             height: 22
-                            
+
                             Image {
                                 width: 20
                                 height: 20
@@ -285,6 +285,7 @@ PanelWindow {
 
                 property int memoryPercentage: 0
                 property int cpuPercentage: 0
+                property int batteryPercentage: 0
                 property int temperature: 0
 
                 MyText {
@@ -310,6 +311,20 @@ PanelWindow {
                 }
 
                 MyText {
+                    id: batteryText
+                    visible: Settings.hasBattery
+                    text: "󰂀"
+                    rightPadding: padding_
+                    color: Colorscheme.resourcesColor
+                }
+
+                MyText {
+                    visible: Settings.hasBattery
+                    rightPadding: padding_
+                    text: `${resourcesModule.batteryPercentage}%`
+                }
+
+                MyText {
                     text: ""
                     rightPadding: padding_
                     color: Colorscheme.resourcesColor
@@ -327,6 +342,9 @@ PanelWindow {
                         memoryProcess.running = true
                         cpuProcess.running = true
                         temperatureProcess.running = true
+
+                        if (Settings.hasBattery)
+                            batteryProcess.running = true
                     }
                 }
 
@@ -353,12 +371,37 @@ PanelWindow {
                 }
 
                 Process {
+                    id: batteryProcess
+                    running: Settings.hasBattery
+                    command: [ "sh", "-c", "acpi | head -n 1" ]
+                    stdout: StdioCollector {
+                        onStreamFinished: {
+                            let batteryLevel = parseInt(this.text.match(/\d+/g)[1])
+                            batteryText.color = Colorscheme.resourcesColor
+
+                            if (this.text.includes("Charging")) {
+                                batteryText.text = "󰂄"
+                            } else {
+                                if (batteryLevel > 20) {
+                                    batteryText.text = "󰂀"
+                                } else {
+                                    batteryText.color = Colorscheme.workspaceColor
+                                    batteryText.text = "󰂎"
+                                }
+                            }
+
+                            resourcesModule.batteryPercentage = batteryLevel
+                        }
+                    }
+                }
+
+                Process {
                     id: temperatureProcess
                     running: true
                     command: [ "sh", "-c", "sensors | awk '/junction/ { print int($2) }'" ]
                     stdout: StdioCollector {
                         onStreamFinished: {
-                            resourcesModule.temperature = this.text
+                            resourcesModule.temperature = Number(this.text)
                         }
                     }
                 }
